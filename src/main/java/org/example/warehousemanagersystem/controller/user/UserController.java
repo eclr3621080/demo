@@ -5,9 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import lombok.extern.slf4j.Slf4j;
 import org.example.warehousemanagersystem.common.RetStatus;
-import org.example.warehousemanagersystem.service.user.bo.UserAddBO;
-import org.example.warehousemanagersystem.service.user.bo.UserGetBO;
-import org.example.warehousemanagersystem.service.user.bo.UserLoginBO;
+import org.example.warehousemanagersystem.service.user.bo.*;
 import org.example.warehousemanagersystem.service.user.service.UserService;
 import org.example.warehousemanagersystem.service.user.vo.UserGetVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,7 +26,7 @@ import java.util.List;
  */
 
 @Controller
-@RequestMapping("user")
+@RequestMapping("api/user")
 @Slf4j
 public class UserController {
     @Autowired
@@ -58,7 +57,23 @@ public class UserController {
         return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
 
     }
-    @PostMapping("/loginuser")
+    @PostMapping("/infouser")
+    @ResponseBody
+    public String infoUser(@RequestBody UserGetBO userGetBO){
+        RetStatus<Object> retStatus = new RetStatus<>();
+        try{
+            UserGetVO list = userService.getone(userGetBO);
+            ArrayList<Integer> integers = new ArrayList<>();
+            integers.add(list.getRoleId());
+            list.setRoles(integers);
+            retStatus.setData(list);
+        }catch (Exception e){
+            retStatus.set(-1, e.getMessage());
+        }
+        return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
+
+    }
+    @PostMapping("/login")
     @ResponseBody
     public String login(@RequestBody UserLoginBO userLoginBO){
         RetStatus<Object> retStatus = new RetStatus<>();
@@ -71,7 +86,22 @@ public class UserController {
         return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
 
     }
-    @RequestMapping("/loginisorno")
+    @PostMapping("/logoutuser")
+    @ResponseBody
+    public String logout(@RequestBody UserLoginBO userLoginBO){
+        RetStatus<Object> retStatus = new RetStatus<>();
+        try{
+            retStatus= userService.logout(userLoginBO);
+
+        }catch (Exception e){
+            retStatus.set(-1, e.getMessage());
+        }
+        return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
+
+    }
+
+
+    @PostMapping("/loginisorno")
     @ResponseBody
     public String loginisno(){
         RetStatus<Object> retStatus = new RetStatus<>();
@@ -84,6 +114,35 @@ public class UserController {
         return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
 
     }
+    @PostMapping("/updateuser")
+    @ResponseBody
+    public String updateuser(@RequestBody UserUpdateBO updateBO){
+        RetStatus<Object> retStatus = new RetStatus<>();
+        try {
+            StpUtil.isLogin();
+            retStatus = userService.update(updateBO);
+        }catch (Exception e){
+            retStatus.set(-1, e.getMessage());
+        }
+        return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
+
+    }
+    @PostMapping("/deleteuser")
+    @ResponseBody
+    public String deleteUser(@RequestBody UserDeleteBO userDeleteBO){
+        RetStatus<Object> retStatus = new RetStatus<>();
+        try {
+            StpUtil.isLogin();
+            retStatus = userService.delete(userDeleteBO);
+        } catch (Exception e) {
+            retStatus.set(-1, e.getMessage());
+        }
+        return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
+    }
+
+
+
+
 
 
 }

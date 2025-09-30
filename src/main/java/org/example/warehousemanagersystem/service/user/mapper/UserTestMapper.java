@@ -4,6 +4,7 @@ package org.example.warehousemanagersystem.service.user.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.example.warehousemanagersystem.service.user.bo.UserGetBO;
+import org.example.warehousemanagersystem.service.user.bo.UserUpdateBO;
 import org.example.warehousemanagersystem.service.user.pojo.UserPOJO;
 import org.example.warehousemanagersystem.service.user.vo.UserGetVO;
 
@@ -16,4 +17,6 @@ public interface UserTestMapper {
     List<UserGetVO> listUser(UserGetBO userGetBO);
 
     UserGetVO getOne(UserGetBO userGetBO);
+
+    Integer updateUser(UserUpdateBO userUpdateBO);
 }

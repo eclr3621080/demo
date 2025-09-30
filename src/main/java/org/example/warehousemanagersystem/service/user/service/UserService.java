@@ -1,10 +1,8 @@
 package org.example.warehousemanagersystem.service.user.service;
 
 import org.example.warehousemanagersystem.common.RetStatus;
-import org.example.warehousemanagersystem.service.user.bo.UserAddBO;
-import org.example.warehousemanagersystem.service.user.bo.UserGetBO;
+import org.example.warehousemanagersystem.service.user.bo.*;
 
-import org.example.warehousemanagersystem.service.user.bo.UserLoginBO;
 import org.example.warehousemanagersystem.service.user.pojo.UserPOJO;
 import org.example.warehousemanagersystem.service.user.vo.UserGetVO;
 
@@ -23,5 +21,10 @@ public interface UserService {
     List<UserGetVO> list(UserGetBO userGetBO);
     UserGetVO getone(UserGetBO userGetBO);
     RetStatus<Object> login(UserLoginBO userGetBO);
+    RetStatus<Object> update(UserUpdateBO userUpdateBO);
 
+
+    RetStatus<Object> delete(UserDeleteBO userDeleteBO);
+
+    RetStatus<Object> logout(UserLoginBO userLoginBO);
 }

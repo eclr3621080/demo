@@ -11,9 +11,9 @@ import lombok.Data;
 
 @Data
 public class BaseGetBO {
-    private Integer page;
+    private Integer page=1;
 
-    private Integer limit;
+    private Integer limit=10;
     public Integer getPageSize() {
         if(this.page != null && this.page > 0){
             return this.page*this.limit - this.limit;

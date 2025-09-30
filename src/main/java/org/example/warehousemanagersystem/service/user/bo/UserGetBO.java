@@ -13,6 +13,6 @@ import org.example.warehousemanagersystem.common.BaseGetBO;
 @Data
 public class UserGetBO extends BaseGetBO {
     private Integer id;
-    private String f_employee_no;
-    private String f_user_name;
+    private String employeeNo;
+    private String userName;
 }

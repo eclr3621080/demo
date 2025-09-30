@@ -64,15 +64,49 @@
             </if>
         </trim>
     </insert>
+    <update id="updateUser" parameterType="org.example.warehousemanagersystem.service.user.bo.UserUpdateBO">
+        update f_store_user
+        <trim prefix="set" suffixOverrides=",">
+            <if test="secret != null and secret != ''">
+                secret = #{secret},
+            </if>
+            <if test="userName != null and userName != ''">
+                userName = #{userName},
+            </if>
+            <if test="sex != null and sex != ''">
+                sex = #{sex},
+            </if>
+            <if test="age != null and age != ''">
+                age = #{age},
+            </if>
+            <if test="userAvatar != null and userAvatar != ''">
+                userAvatar = #{userAvatar},
+            </if>
+            <if test="remark != null and remark != ''">
+                remark = #{remark},
+            </if>
+            <if test="isDelete != null and isDelete != ''">
+                isDelete = #{isDelete},
+            </if>
+            <if test="updateTime != null and updateTime != ''">
+                updateTime = now(),
+            </if>
+        </trim>
+        WHERE id in
+        <foreach collection="ids" open="(" separator="," close=")" item="id">
+            #{id}
+        </foreach>
+
+    </update>
     <sql id="selectSql">
         <if test="id != null and id > 0 ">
             and id = #{id}
         </if>
-        <if test="f_employee_no != null and f_employee_no > 0 ">
-            and employeeNo = #{f_employee_no}
+        <if test="employeeNo != null and employeeNo > 0 ">
+            and employeeNo = #{employeeNo}
         </if>
-        <if test="f_user_name != null and f_user_name > 0 ">
-            and userName = #{f_user_name}
+        <if test="userName != null and userName > 0 ">
+            and userName = #{userName}
         </if>
     </sql>
     <select id="listUser" resultType="org.example.warehousemanagersystem.service.user.vo.UserGetVO" parameterType="org.example.warehousemanagersystem.service.user.bo.UserGetBO">
@@ -87,6 +121,5 @@
         SELECT * from f_store_user
         where 1 = 1<include refid="selectSql"/>
         limit 1
-
     </select>
 </mapper>
