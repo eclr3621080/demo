@@ -6,14 +6,14 @@
     <insert id="addUser" parameterType="org.example.warehousemanagersystem.service.user.pojo.UserPOJO" useGeneratedKeys="true" keyProperty="id" >
         insert into f_store_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="addTime != null and addTime != ''">
-                addTime,
+            <if test="createTime != null and createTime != ''">
+                createTime,
             </if>
             <if test="employeeNo != null and employeeNo != ''">
                 employeeNo,
             </if>
-            <if test="secret != null and secret != ''">
-                secret,
+            <if test="passWord != null and passWord != ''">
+                passWord,
             </if>
             <if test="userName != null and userName != ''">
                 userName,
@@ -35,14 +35,14 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="addTime != null and addTime != ''">
-                #{addTime},
+            <if test="createTime != null and createTime != ''">
+                #{createTime},
             </if>
             <if test="employeeNo != null and employeeNo != ''">
                 #{employeeNo},
             </if>
-            <if test="secret != null and secret != ''">
-                #{secret},
+            <if test="passWord != null and passWord != ''">
+                #{passWord},
             </if>
             <if test="userName != null and userName != ''">
                 #{userName},
@@ -67,8 +67,8 @@
     <update id="updateUser" parameterType="org.example.warehousemanagersystem.service.user.bo.UserUpdateBO">
         update f_store_user
         <trim prefix="set" suffixOverrides=",">
-            <if test="secret != null and secret != ''">
-                secret = #{secret},
+            <if test="passWord != null and passWord != ''">
+                passWord = #{passWord},
             </if>
             <if test="userName != null and userName != ''">
                 userName = #{userName},
@@ -79,6 +79,9 @@
             <if test="age != null and age != ''">
                 age = #{age},
             </if>
+            <if test="img != null and img != ''">
+                userAvatar = #{img},
+            </if>
             <if test="userAvatar != null and userAvatar != ''">
                 userAvatar = #{userAvatar},
             </if>
@@ -87,6 +90,15 @@
             </if>
             <if test="isDelete != null and isDelete != ''">
                 isDelete = #{isDelete},
+            </if>
+            <if test="roleId != null and roleId >0">
+                roleId = #{roleId},
+            </if>
+            <if test="mobile != null and mobile >0">
+                mobile = #{mobile},
+            </if>
+            <if test="status != null ">
+                status = #{status},
             </if>
             <if test="updateTime != null and updateTime != ''">
                 updateTime = now(),
@@ -105,14 +117,14 @@
         <if test="employeeNo != null and employeeNo > 0 ">
             and employeeNo = #{employeeNo}
         </if>
-        <if test="userName != null and userName > 0 ">
+        <if test="userName != null and userName !='' ">
             and userName = #{userName}
         </if>
     </sql>
     <select id="listUser" resultType="org.example.warehousemanagersystem.service.user.vo.UserGetVO" parameterType="org.example.warehousemanagersystem.service.user.bo.UserGetBO">
         SELECT * from f_store_user
         where 1 = 1<include refid="selectSql"/>
-        order by addtime desc
+        order by createTime desc
         <if test="page != null">
             limit #{pageSize},#{limit}
         </if>
