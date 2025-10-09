@@ -3,6 +3,7 @@ package org.example.warehousemanagersystem.service.customer.pojo;
 import lombok.Data;
 import org.example.warehousemanagersystem.common.BaseFlagPOJO;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -17,7 +18,7 @@ public class CustomerPOJO extends BaseFlagPOJO {
     /**
      * 创建时间
      */
-    private Date addtime;
+    private String CreateTime;
     /**
      * 客户账号
      */
@@ -29,7 +30,7 @@ public class CustomerPOJO extends BaseFlagPOJO {
     /**
      * 密码
      */
-    private String secret;
+    private String passWord;
     /**
      * 姓名
      */
@@ -46,4 +47,8 @@ public class CustomerPOJO extends BaseFlagPOJO {
      * 是否是vip
      */
     private Integer isVip;
+    private BigDecimal vipDiscount;
+    private Integer vipDate;
+    private Integer status;
+    private Integer buyNumber;
 }

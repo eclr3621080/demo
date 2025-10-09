@@ -43,7 +43,7 @@ public class AuthController {
             String loginId = (String) StpUtil.getLoginId();
             Integer i = Integer.valueOf(loginId);
             UserGetBO userGetBO=new UserGetBO();
-           userGetBO.setId(i);
+            userGetBO.setId(i);
             UserGetVO list = userService.getone(userGetBO);
             ArrayList<Integer> integers = new ArrayList<>();
             integers.add(list.getRoleId());

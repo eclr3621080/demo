@@ -1,6 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.example.warehousemanagersystem.service.customer.mapper.CustomerMapper">
+    <insert id="add" parameterType="org.example.warehousemanagersystem.service.customer.pojo.CustomerPOJO"  useGeneratedKeys="true" keyProperty="id">
+        insert into f_store_customer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="createTime != null and createTime != ''">
+            createTime,
+        </if>
+            <if test="account != null and account != ''">
+                account,
+            </if>
+            <if test="customerProfile != null and customerProfile != ''">
+                customerProfile,
+            </if>
+            <if test="passWord != null and passWord != ''">
+                passWord,
+            </if>
+            <if test="name != null and name != ''">
+                name,
+            </if>
+            <if test="sex != null ">
+                sex,
+            </if>
+            <if test="remark != null and remark != ''">
+                remark,
+            </if>
+            <if test="isVip != null ">
+                isVip,
+            </if>
+            <if test="vipDiscount != null ">
+                vipDiscount,
+            </if>
+            <if test="vipDate != null ">
+                vipDate,
+            </if>
+            <if test="status != null ">
+                status,
+            </if>
+            <if test="buyNumber != null ">
+                buyNumber,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="createTime != null and createTime != ''">
+                #{createTime},
+            </if>
+            <if test="account != null and account != ''">
+                #{account},
+            </if>
+            <if test="customerProfile != null and customerProfile != ''">
+                #{customerProfile},
+            </if>
+            <if test="passWord != null and passWord != ''">
+                #{passWord},
+            </if>
+            <if test="name != null and name != ''">
+                #{name},
+            </if>
+            <if test="sex != null ">
+                #{sex},
+            </if>
+            <if test="remark != null and remark != ''">
+                #{remark},
+            </if>
+            <if test="isVip != null ">
+                #{isVip},
+            </if>
+            <if test="vipDiscount != null ">
+                #{vipDiscount},
+            </if>
+            <if test="vipDate != null ">
+                #{vipDate},
+            </if>
+            <if test="status != null ">
+                #{status},
+            </if>
+            <if test="buyNumber != null ">
+                #{buyNumber},
+            </if>
+        </trim>
+    </insert>
 
     <select id="getList" resultType="org.example.warehousemanagersystem.service.customer.vo.CustomerVO" parameterType="org.example.warehousemanagersystem.service.customer.bo.CustomerGetBO">
         select * from f_store_customer
@@ -21,6 +100,12 @@
         </if>
         <if test="account != null">
             AND account = #{account}
+        </if>
+          <if test="name != null">
+            AND  name = #{name}
+        </if>
+          <if test="isVip != null">
+            AND  isVip = #{isVip}
         </if>
 
     </sql>

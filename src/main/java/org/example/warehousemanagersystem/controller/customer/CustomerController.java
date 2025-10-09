@@ -4,10 +4,13 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import lombok.extern.slf4j.Slf4j;
 import org.example.warehousemanagersystem.common.RetStatus;
+import org.example.warehousemanagersystem.service.customer.bo.CustomerAddBO;
 import org.example.warehousemanagersystem.service.customer.bo.CustomerGetBO;
+import org.example.warehousemanagersystem.service.customer.pojo.CustomerPOJO;
 import org.example.warehousemanagersystem.service.customer.service.CustomerService;
 import org.example.warehousemanagersystem.service.customer.vo.CustomerListVO;
 import org.example.warehousemanagersystem.service.customer.vo.CustomerVO;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,6 +46,19 @@ public class CustomerController {
             Long customerTotal =customerService.getLong(customerGetBO);
             customerListVO.setTotal(customerTotal);
             retStatus.setData(customerListVO);
+        }catch (Exception e){
+            retStatus.set("-1", e.getMessage());
+        }
+        return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
+
+    }
+    @PostMapping("/add")
+    @ResponseBody
+    public String addCustomer(@RequestBody CustomerAddBO customerAddBO){
+        RetStatus<Object> retStatus = new RetStatus<>();
+        try{
+
+            customerService.add(customerAddBO);
         }catch (Exception e){
             retStatus.set("-1", e.getMessage());
         }

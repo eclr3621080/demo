@@ -15,6 +15,7 @@ import java.util.Date;
 
 @Data
 public class CustomerGetBO extends BaseGetBO {
+    private Integer id;
     /**
      * 创建时间
      */
@@ -37,6 +38,7 @@ public class CustomerGetBO extends BaseGetBO {
     private Integer status;
     private String vipDate;
     private BigDecimal vipDiscount;
+    private String isVip;
 
     private Integer current;
     private Integer size;

@@ -6,9 +6,11 @@ import org.example.warehousemanagersystem.service.customer.bo.CustomerDeleteBO;
 import org.example.warehousemanagersystem.service.customer.bo.CustomerGetBO;
 import org.example.warehousemanagersystem.service.customer.bo.CustomerUpdateBO;
 import org.example.warehousemanagersystem.service.customer.mapper.CustomerMapper;
+import org.example.warehousemanagersystem.service.customer.pojo.CustomerPOJO;
 import org.example.warehousemanagersystem.service.customer.service.CustomerService;
 import org.example.warehousemanagersystem.service.customer.vo.CustomerVO;
 import org.example.warehousemanagersystem.service.role.bo.RoleDeleteBO;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,7 +33,9 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     @Transactional
     public void add(CustomerAddBO customerAddBO) {
-        customerMapper.add(customerAddBO);
+        CustomerPOJO customerPOJO = new CustomerPOJO();
+        BeanUtils.copyProperties(customerAddBO,customerPOJO);
+        customerMapper.add(customerPOJO);
     }
 
     @Override

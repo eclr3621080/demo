@@ -5,13 +5,14 @@ import org.example.warehousemanagersystem.service.customer.bo.CustomerAddBO;
 import org.example.warehousemanagersystem.service.customer.bo.CustomerDeleteBO;
 import org.example.warehousemanagersystem.service.customer.bo.CustomerGetBO;
 import org.example.warehousemanagersystem.service.customer.bo.CustomerUpdateBO;
+import org.example.warehousemanagersystem.service.customer.pojo.CustomerPOJO;
 import org.example.warehousemanagersystem.service.customer.vo.CustomerVO;
 
 import java.util.List;
 
 @Mapper
 public interface CustomerMapper {
-    void add(CustomerAddBO customerAddBO);
+    void add(CustomerPOJO customerPOJO);
 
     Integer update(CustomerUpdateBO customerUpdateBO);
 
