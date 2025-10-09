@@ -1,6 +1,8 @@
 package org.example.warehousemanagersystem.service.customer.bo;
 
 import lombok.Data;
+import org.example.warehousemanagersystem.service.customer.pojo.CustomerPOJO;
+import org.example.warehousemanagersystem.service.customer.vo.CustomerVO;
 
 /**
  * @Author: 沈琪
@@ -10,6 +12,6 @@ import lombok.Data;
  */
 
 @Data
-public class CustomerUpdateBO {
+public class CustomerUpdateBO extends CustomerPOJO {
 
 }

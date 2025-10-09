@@ -23,6 +23,8 @@ public class OrderPOJO extends BaseFlagPOJO {
      private String orderStatus;
      private String account;
      private String orderPayName;
+     private String orderAddress;
+     private Long orderMobile;
      private String orderGoods;
      private Integer isDelete;
      private String remark;

@@ -140,6 +140,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Long getLong(UserGetBO userGetBO) {
+        Long total= userTestMapper.getLong(userGetBO);
+        return total;
+    }
+
+    @Override
     @Transactional
     public RetStatus<Object> update(UserUpdateBO userUpdateBO) throws IOException {
         RetStatus<Object> retStatus = new RetStatus<>();

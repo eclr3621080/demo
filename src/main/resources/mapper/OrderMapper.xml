@@ -26,8 +26,51 @@
         <if test="orderStatus != null and orderStatus !='' ">
             and orderStatus = #{orderStatus}
         </if>
+        <if test="createTimeStart != null and createTimeStart != ''">
+            AND createTime &gt;= #{createTimeStart}
+        </if>
+        <if test="createTimeEnd != null and createTimeEnd != ''">
+            AND createTime &lt; #{createTimeEnd}
+        </if>
 
     </sql>
+    <update id="updateOrder" parameterType="org.example.warehousemanagersystem.service.order.bo.OrderUpdateBO" >
+        update f_store_order
+        <trim prefix="set" suffixOverrides=",">
+            <if test="orderNo != null and orderNo != ''">
+                orderNo = #{orderNo},
+            </if>
+            <if test="orderPrice != null ">
+                orderPrice = #{orderPrice},
+            </if>
+            <if test="account != null and account != ''">
+                account = #{account},
+            </if>
+            <if test="orderPayName != null and orderPayName != ''">
+                orderPayName = #{orderPayName},
+            </if>
+            <if test="orderGoods != null and orderGoods != ''">
+                orderGoods = #{orderGoods},
+            </if>
+            <if test="isDelete != null ">
+                isDelete = #{isDelete},
+            </if>
+            <if test="orderStatus != null ">
+                orderStatus = #{orderStatus},
+            </if>
+            <if test="remark != null and remark!=''">
+                remark = #{remark},
+            </if>
+            <if test="orderAddress != null and orderAddress !=''">
+                orderAddress = #{orderAddress},
+            </if>
+            <if test="orderMobile != null ">
+                orderMobile = #{orderMobile},
+            </if>
+        </trim>
+        WHERE id = #{id}
+
+    </update>
     <select id="getList" resultType="org.example.warehousemanagersystem.service.order.vo.OrderGetVO" parameterType="org.example.warehousemanagersystem.service.order.bo.OrderGetBO">
         SELECT * from f_store_order
         where 1 = 1<include refid="selectSql"/>
@@ -35,5 +78,15 @@
         <if test="page != null">
             limit #{pageSize},#{limit}
         </if>
+    </select>
+    <select id="getOne" resultType="org.example.warehousemanagersystem.service.order.vo.OrderGetVO" parameterType="org.example.warehousemanagersystem.service.order.bo.OrderGetBO">
+        SELECT * from f_store_order
+        where 1 = 1<include refid="selectSql"/>
+        order by createTime desc
+
+    </select>
+    <select id="getLong" resultType="java.lang.Long" parameterType="org.example.warehousemanagersystem.service.order.bo.OrderGetBO">
+        select count(*) from f_store_order where 1 = 1
+        <include refid="selectSql"></include>
     </select>
 </mapper>

@@ -153,4 +153,8 @@
         where 1 = 1<include refid="selectSql"/>
         limit 1
     </select>
+    <select id="getLong" resultType="java.lang.Long" parameterType="org.example.warehousemanagersystem.service.user.bo.UserGetBO">
+        select count(*) from f_store_user where 1 = 1
+        <include refid="selectSql"></include>
+    </select>
 </mapper>

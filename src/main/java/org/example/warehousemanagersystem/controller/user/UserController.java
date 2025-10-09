@@ -5,12 +5,14 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import lombok.extern.slf4j.Slf4j;
 import org.example.warehousemanagersystem.common.RetStatus;
+import org.example.warehousemanagersystem.service.order.vo.OrderListVO;
 import org.example.warehousemanagersystem.service.role.bo.RoleGetBO;
 import org.example.warehousemanagersystem.service.role.service.RoleService;
 import org.example.warehousemanagersystem.service.role.vo.RoleVO;
 import org.example.warehousemanagersystem.service.user.bo.*;
 import org.example.warehousemanagersystem.service.user.service.UserService;
 import org.example.warehousemanagersystem.service.user.vo.UserGetVO;
+import org.example.warehousemanagersystem.service.user.vo.UserListVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -68,8 +70,14 @@ public class UserController {
     public String listUser(@RequestBody UserGetBO userGetBO){
         RetStatus<Object> retStatus = new RetStatus<>();
         try{
+            userGetBO.setPage(userGetBO.getCurrent());
+            userGetBO.setLimit(userGetBO.getSize());
             List<UserGetVO> list = userService.list(userGetBO);
-            retStatus.setData(list);
+            UserListVO userListVO = new UserListVO();
+            userListVO.setRecords(list);
+            Long ordertotal =userService.getLong(userGetBO);
+            userListVO.setTotal(ordertotal);
+            retStatus.setData(userListVO);
         }catch (Exception e){
             retStatus.set("-1", e.getMessage());
         }

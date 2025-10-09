@@ -19,4 +19,6 @@ public interface UserTestMapper {
     UserGetVO getOne(UserGetBO userGetBO);
 
     Integer updateUser(UserUpdateBO userUpdateBO);
+
+    Long getLong(UserGetBO userGetBO);
 }

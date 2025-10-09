@@ -19,11 +19,11 @@ public class GoodsPOJO extends BaseFlagPOJO {
     /**
      * 创建时间
      */
-    private Date addTime;
+    private String createTime;
     /**
      * 商品头像/图片
      */
-    private String goodsImp;
+    private String goodsImg;
     /**
      * 商品数量
      */

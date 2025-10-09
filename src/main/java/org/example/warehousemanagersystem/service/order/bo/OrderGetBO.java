@@ -1,7 +1,10 @@
 package org.example.warehousemanagersystem.service.order.bo;
 
 import lombok.Data;
+import org.example.warehousemanagersystem.common.BaseGetBO;
 import org.example.warehousemanagersystem.service.order.pojo.OrderPOJO;
+
+import java.util.List;
 
 /**
  * @Author: 沈琪
@@ -11,5 +14,22 @@ import org.example.warehousemanagersystem.service.order.pojo.OrderPOJO;
  */
 
 @Data
-public class OrderGetBO extends OrderPOJO {
+public class OrderGetBO extends BaseGetBO {
+    private Integer id;
+    private String createTime;
+    private String updateTime;
+    private String orderNo;
+    private String orderPrice;
+    private String orderStatus;
+    private String account;
+    private String orderPayName;
+    private String orderGoods;
+    private Integer isDelete;
+    private String remark;
+    private List<Long> createTimeRange;
+    private String createTimeStart;
+    private String createTimeEnd;
+    private Integer current;
+    private Integer size;
+
 }

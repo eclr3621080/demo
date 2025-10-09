@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.warehousemanagersystem.service.customer.mapper.CustomerMapper">
+
+    <select id="getList" resultType="org.example.warehousemanagersystem.service.customer.vo.CustomerVO" parameterType="org.example.warehousemanagersystem.service.customer.bo.CustomerGetBO">
+        select * from f_store_customer
+        where  1=1
+        <include refid="getDataSQL"/>
+        ORDER BY id DESC
+        <if test="page != null">
+            limit #{pageSize},#{limit}
+        </if>
+    </select>
+    <select id="getLong" resultType="java.lang.Long" parameterType="org.example.warehousemanagersystem.service.customer.bo.CustomerGetBO">
+        select count(*) from f_store_customer where 1 = 1
+        <include refid="getDataSQL"></include>
+    </select>
+    <sql id="getDataSQL">
+        <if test="id != null">
+            AND id = #{id}
+        </if>
+        <if test="account != null">
+            AND account = #{account}
+        </if>
+
+    </sql>
+</mapper>

@@ -25,4 +25,6 @@ public class UserGetBO extends BaseGetBO {
     private String createTimeStart;
     private String createTimeEnd;
     private List<Long> createTimeRange;
+    private Integer current;
+    private Integer size;
 }

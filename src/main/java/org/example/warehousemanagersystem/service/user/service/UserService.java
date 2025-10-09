@@ -28,4 +28,6 @@ public interface UserService {
     RetStatus<Object> delete(UserDeleteBO userDeleteBO);
 
     RetStatus<Object> logout(UserLoginBO userLoginBO);
+
+    Long getLong(UserGetBO userGetBO);
 }

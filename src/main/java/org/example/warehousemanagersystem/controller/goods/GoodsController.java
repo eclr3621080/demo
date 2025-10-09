@@ -1,5 +1,6 @@
 package org.example.warehousemanagersystem.controller.goods;
 
+import cn.dev33.satoken.stp.StpUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import lombok.extern.slf4j.Slf4j;
@@ -10,15 +11,17 @@ import org.example.warehousemanagersystem.service.goods.bo.GoodsGetBO;
 import org.example.warehousemanagersystem.service.goods.bo.GoodsUpdateBO;
 import org.example.warehousemanagersystem.service.goods.service.GoodsService;
 import org.example.warehousemanagersystem.service.goods.vo.GoodsGetVO;
+import org.example.warehousemanagersystem.service.order.vo.OrderGetVO;
 import org.example.warehousemanagersystem.service.user.bo.UserAddBO;
+import org.example.warehousemanagersystem.service.user.bo.UserDeleteBO;
+import org.example.warehousemanagersystem.service.user.bo.UserGetBO;
 import org.example.warehousemanagersystem.service.user.service.UserService;
+import org.example.warehousemanagersystem.service.user.vo.UserGetVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,7 +37,7 @@ import java.util.List;
 public class GoodsController {
     @Autowired
     private GoodsService goodsService;
-    @PostMapping("/addgoods")
+    @PostMapping("/add")
     @ResponseBody
     public String addgoods(@RequestBody GoodsAddBO goodsAddBO){
         RetStatus<Object> retStatus = new RetStatus<>();
@@ -45,7 +48,7 @@ public class GoodsController {
         }
         return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
     }
-    @PostMapping("/listgoods")
+    @PostMapping("/list")
     @ResponseBody
     public String listgoods(@RequestBody GoodsGetBO goodsGetBO){
         RetStatus<Object> retStatus = new RetStatus<>();
@@ -57,7 +60,7 @@ public class GoodsController {
         }
         return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
     }
-    @PostMapping("/updategoods")
+    @PostMapping("/update")
     @ResponseBody
     public String updategoods(@RequestBody GoodsUpdateBO goodsUpdateBO){
         RetStatus<Object> retStatus = new RetStatus<>();
@@ -69,7 +72,7 @@ public class GoodsController {
         }
         return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
     }
-    @PostMapping("/deletegoods")
+    @PostMapping("/delete")
     @ResponseBody
     public String deletegoods(@RequestBody GoodsDeleteBO goodsDeleteBO){
         RetStatus<Object> retStatus = new RetStatus<>();
@@ -81,4 +84,23 @@ public class GoodsController {
         }
         return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
     }
+    @GetMapping("{id}")
+    @ResponseBody
+    public String infoGoods(@PathVariable Integer id){
+        RetStatus<Object> retStatus = new RetStatus<>();
+        try{
+            GoodsGetBO goodsGetBO=new GoodsGetBO();
+            goodsGetBO.setId(id);
+            GoodsGetVO list = goodsService.getone(goodsGetBO);
+
+
+            retStatus.setData(list);
+        }catch (Exception e){
+            retStatus.set("-1", e.getMessage());
+        }
+        return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
+
+    }
+
+
 }

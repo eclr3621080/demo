@@ -15,4 +15,6 @@ public interface GoodsMapper {
 
 
     Integer updateGoods(GoodsUpdateBO goodsUpdateBO);
+
+    GoodsGetVO getOne(GoodsGetBO goodsGetBO);
 }

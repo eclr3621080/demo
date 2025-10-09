@@ -8,6 +8,7 @@ import org.example.warehousemanagersystem.service.customer.bo.CustomerUpdateBO;
 import org.example.warehousemanagersystem.service.customer.vo.CustomerVO;
 import org.example.warehousemanagersystem.service.role.bo.RoleDeleteBO;
 import org.example.warehousemanagersystem.service.role.pojo.RolePOJO;
+import org.example.warehousemanagersystem.service.user.vo.UserGetVO;
 
 import java.util.List;
 
@@ -18,4 +19,6 @@ public interface CustomerService {
     List<CustomerVO> getList(CustomerGetBO customerGetBO);
     CustomerVO getOne (CustomerGetBO customerGetBO);
 
+
+    Long getLong(CustomerGetBO customerGetBO);
 }
