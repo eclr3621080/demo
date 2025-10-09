@@ -14,51 +14,51 @@ import java.io.Serializable;
 
 public class RetStatus<T> implements Serializable {
     private static final long serialVersionUID = -4623179344362188723L;
-    private int errorCode;
-    private String errorMsg;
+    private String code;
+    private String msg;
     private T data;
 
     public RetStatus() {
-        this.errorCode = 0;
-        this.errorMsg = "success";
+        this.code = "0000";
+        this.msg = "success";
     }
 
-    public RetStatus(int errorCode, String errorMsg) {
-        this.errorCode = errorCode;
-        this.errorMsg = errorMsg;
+    public RetStatus(String code, String msg) {
+        this.code = code;
+        this.msg = msg;
     }
 
-    public RetStatus(int errorCode, String errorMsg, T data) {
-        this.errorCode = errorCode;
-        this.errorMsg = errorMsg;
+    public RetStatus(String code, String msg, T data) {
+        this.code = code;
+        this.msg = msg;
         this.data = data;
     }
 
-    public void set(int errorCode, String errorMsg) {
-        this.errorCode = errorCode;
-        this.errorMsg = errorMsg;
+    public void set(String code, String msg) {
+        this.code = code;
+        this.msg = msg;
     }
 
-    public void set(int errorCode, String errorMsg, T data) {
-        this.errorCode = errorCode;
-        this.errorMsg = errorMsg;
+    public void set(String code, String msg, T data) {
+        this.code = code;
+        this.msg = msg;
         this.data = data;
     }
 
-    public int getErrorCode() {
-        return errorCode;
+    public String getcode() {
+        return code;
     }
 
-    public void setErrorCode(int errorCode) {
-        this.errorCode = errorCode;
+    public void setcode(String code) {
+        this.code = code;
     }
 
-    public String getErrorMsg() {
-        return errorMsg;
+    public String getmsg() {
+        return msg;
     }
 
-    public void setErrorMsg(String errorMsg) {
-        this.errorMsg = errorMsg;
+    public void setmsg(String msg) {
+        this.msg = msg;
     }
 
     public T getData() {

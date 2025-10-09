@@ -30,6 +30,7 @@ public class SaTokenConfigure implements WebMvcConfigurer {
                                     "/user/loginuser",
                                     "/user/infouser",
                                     "/auth/register",
+                                    "/auth/login",
                                     "/error",
                                     // Swagger UI 页面及静态资源
                                     "/swagger-ui.html",
