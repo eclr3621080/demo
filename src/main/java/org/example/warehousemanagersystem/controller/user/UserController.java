@@ -44,7 +44,7 @@ public class UserController {
         return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
     }
 
-    @PostMapping("/listuser")
+    @PostMapping("/list")
     @ResponseBody
     public String listUser(@RequestBody UserGetBO userGetBO){
         RetStatus<Object> retStatus = new RetStatus<>();
