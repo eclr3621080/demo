@@ -103,6 +103,7 @@
             <if test="updateTime != null and updateTime != ''">
                 updateTime = now(),
             </if>
+
         </trim>
         WHERE id in
         <foreach collection="ids" open="(" separator="," close=")" item="id">
@@ -119,6 +120,24 @@
         </if>
         <if test="userName != null and userName !='' ">
             and userName = #{userName}
+        </if>
+        <if test="userRealName != null and userRealName !='' ">
+            and userRealName = #{userRealName}
+        </if>
+        <if test="mobile != null  ">
+            and mobile = #{mobile}
+        </if>
+          <if test="roleId != null  ">
+            and roleId = #{roleId}
+        </if>
+        <if test="email != null  and email !=''">
+            and email = #{email}
+        </if>
+        <if test="createTimeStart != null and createTimeStart != ''">
+            AND createTime &gt;= #{createTimeStart}
+        </if>
+        <if test="createTimeEnd != null and createTimeEnd != ''">
+            AND createTime &lt; #{createTimeEnd}
         </if>
     </sql>
     <select id="listUser" resultType="org.example.warehousemanagersystem.service.user.vo.UserGetVO" parameterType="org.example.warehousemanagersystem.service.user.bo.UserGetBO">

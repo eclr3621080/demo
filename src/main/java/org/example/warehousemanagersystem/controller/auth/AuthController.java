@@ -40,9 +40,10 @@ public class AuthController {
     public String infoUser(){
         RetStatus<Object> retStatus = new RetStatus<>();
         try{
-            String loginId = (String)StpUtil.getLoginId();
+            String loginId = (String) StpUtil.getLoginId();
+            Integer i = Integer.valueOf(loginId);
             UserGetBO userGetBO=new UserGetBO();
-           userGetBO.setUserName(loginId);
+           userGetBO.setId(i);
             UserGetVO list = userService.getone(userGetBO);
             ArrayList<Integer> integers = new ArrayList<>();
             integers.add(list.getRoleId());

@@ -24,7 +24,7 @@ public class RolePOJO {
     /**
      * 角色名称
      */
-    private String rolename;
+    private String roleName;
     /**
      * 菜单id
      */

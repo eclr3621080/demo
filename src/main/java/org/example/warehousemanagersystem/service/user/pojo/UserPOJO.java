@@ -69,4 +69,6 @@ public class UserPOJO  extends BaseFlagPOJO {
 
    private Integer roleId;
    private Integer status;
+   private String email;
+   private String userRealName;
 }

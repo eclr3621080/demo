@@ -25,6 +25,10 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
@@ -59,7 +63,23 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserGetVO> list(UserGetBO userGetBO) {
         try {
+            if (!CollectionUtils.isEmpty(userGetBO.getCreateTimeRange())){
+                long milliseconds = userGetBO.getCreateTimeRange().get(0);
+                long milliseconds1 = userGetBO.getCreateTimeRange().get(1);
 
+                Instant instant = Instant.ofEpochMilli(milliseconds);
+                LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                Instant instant1 = Instant.ofEpochMilli(milliseconds1);
+                LocalDateTime localDateTime1 = LocalDateTime.ofInstant(instant1, ZoneId.systemDefault());
+
+                DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                String formattedDate = localDateTime.format(formatter);
+                String formattedDate1 = localDateTime1.format(formatter1);
+                userGetBO.setCreateTimeEnd(formattedDate1);
+                userGetBO.setCreateTimeStart(formattedDate);
+            }
             return userTestMapper.listUser(userGetBO);
         }catch (Exception e){
             e.printStackTrace();
@@ -88,7 +108,7 @@ public class UserServiceImpl implements UserService {
             if (!userGetVOList.getPassWord().equals(userLoginBO.getPassword())) {
                 retStatus.set("-1", "密码错误");
             }
-            StpUtil.login(userLoginBO.getUserName());
+            StpUtil.login(userGetVOList.getId());
             StpUtil.isLogin();
             userGetVOList.setToken(StpUtil.getTokenValue());
             retStatus.setData(userGetVOList);
@@ -154,21 +174,22 @@ public class UserServiceImpl implements UserService {
             retStatus.set("-1", "登录账号错误");
             return retStatus;
         }
+        if (userDeleteBO.getId().equals(id)) {
+            retStatus.set("-1", "无法删除自己的账号");
+            return retStatus;
+        }
         UserGetBO userGetBO = new UserGetBO();
-        userGetBO.setId(id);
+        userGetBO.setId(userDeleteBO.getId());
         UserGetVO one = userTestMapper.getOne(userGetBO);
         if (one == null) {
-            retStatus.set("-1", "登录账号错误");
+            retStatus.set("-1", "删除错误");
             return retStatus;
         }
-        if (!"1".equals(one.getEmployeeNo())) {
-            retStatus.set("-1", "登录账号没权限");
+        if (one.getRoleId().equals(1)) {
+            retStatus.set("-1", "无法删除超级管理员");
             return retStatus;
         }
-        if (one.getId() == userDeleteBO.getId()) {
-            retStatus.set("-1", "不能自己删除自己");
-            return retStatus;
-        }
+
         UserUpdateBO userUpdateBO = new UserUpdateBO();
         Set<Integer> integers = new HashSet<>();
         integers.add(userDeleteBO.getId());

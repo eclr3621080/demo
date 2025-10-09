@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.warehousemanagersystem.service.order.mapper.OrderMapper">
+    <sql id="selectSql">
+        <if test="id != null and id > 0 ">
+            and id = #{id}
+        </if>
+        <if test="orderNo != null and orderNo !='' ">
+            and orderNo = #{orderNo}
+        </if>
+         <if test="orderPrice != null and orderPrice >0 ">
+            and orderPrice = #{orderPrice}
+        </if>
+        <if test="account != null and account >0 ">
+            and account = #{account}
+        </if>
+          <if test="orderPayName != null and orderPayName !='' ">
+            and orderPayName = #{orderPayName}
+        </if>
+         <if test="orderGoods != null and orderGoods !='' ">
+            and orderGoods = #{orderGoods}
+        </if>
+         <if test="updateTime != null and updateTime !='' ">
+            and updateTime = #{updateTime}
+        </if>
+        <if test="orderStatus != null and orderStatus !='' ">
+            and orderStatus = #{orderStatus}
+        </if>
+
+    </sql>
+    <select id="getList" resultType="org.example.warehousemanagersystem.service.order.vo.OrderGetVO" parameterType="org.example.warehousemanagersystem.service.order.bo.OrderGetBO">
+        SELECT * from f_store_order
+        where 1 = 1<include refid="selectSql"/>
+        order by createTime desc
+        <if test="page != null">
+            limit #{pageSize},#{limit}
+        </if>
+    </select>
+</mapper>

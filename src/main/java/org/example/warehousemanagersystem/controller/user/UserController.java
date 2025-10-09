@@ -148,7 +148,7 @@ public class UserController {
         return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
 
     }
-    @PostMapping("/deleteuser")
+    @PostMapping("/delete")
     @ResponseBody
     public String deleteUser(@RequestBody UserDeleteBO userDeleteBO){
         RetStatus<Object> retStatus = new RetStatus<>();
