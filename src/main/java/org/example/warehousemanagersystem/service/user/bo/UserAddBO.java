@@ -2,6 +2,7 @@ package org.example.warehousemanagersystem.service.user.bo;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.example.warehousemanagersystem.service.user.pojo.UserPOJO;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,15 +14,7 @@ import org.springframework.stereotype.Service;
 
 @Setter
 @Getter
-public class UserAddBO {
+public class UserAddBO extends UserPOJO {
 
-    private String f_add_time;
-    private String f_employee_no;
-    private String f_secret;
-    private String f_user_name;
-    private Integer f_sex;
-    private String f_user_avatar;
-    private Integer f_age;
-    private Long f_mobile;
-    private String f_remark;
+   private String img;
 }

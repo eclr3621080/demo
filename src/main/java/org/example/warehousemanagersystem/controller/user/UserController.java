@@ -36,7 +36,7 @@ public class UserController {
     @Autowired
     private RoleService roleService;
 
-    @PostMapping("/adduser")
+    @PostMapping("/add")
     @ResponseBody
     public String addUser(@RequestBody  UserAddBO userAddBO){
         RetStatus<Object> retStatus = new RetStatus<>();

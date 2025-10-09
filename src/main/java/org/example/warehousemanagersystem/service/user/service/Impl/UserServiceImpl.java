@@ -13,6 +13,7 @@ import org.example.warehousemanagersystem.service.user.mapper.UserTestMapper;
 import org.example.warehousemanagersystem.service.user.pojo.UserPOJO;
 import org.example.warehousemanagersystem.service.user.service.UserService;
 import org.example.warehousemanagersystem.service.user.vo.UserGetVO;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -45,18 +46,15 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void add(UserAddBO userAddBO) {
-//        StpUtil.checkLogin();
+//        StpUt il.checkLogin();
         UserPOJO userPOJO = new UserPOJO();
-        userPOJO.setCreateTime(userAddBO.getF_add_time());
-        userPOJO.setEmployeeNo(userAddBO.getF_employee_no());
-        userPOJO.setUserAvatar(userAddBO.getF_user_avatar());
-        userPOJO.setPassWord(userAddBO.getF_secret());
-        userPOJO.setUserName(userAddBO.getF_user_name());
-        userPOJO.setSex(userAddBO.getF_sex());
-        userPOJO.setAge(userAddBO.getF_age());
-        userPOJO.setMobile(userAddBO.getF_mobile());
-        userPOJO.setRemark(userAddBO.getF_remark());
+        BeanUtils.copyProperties(userAddBO,userPOJO);
+        if (userAddBO.getUserAvatar()!=null){
+            RetStatus jsonObject = JSONObject.parseObject(userAddBO.getUserAvatar(),RetStatus.class);
+            userPOJO.setUserAvatar((String) jsonObject.getData());
+        }
         userTestMapper.addUser(userPOJO);
     }
 
