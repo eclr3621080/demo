@@ -6,10 +6,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.warehousemanagersystem.common.RetStatus;
 import org.example.warehousemanagersystem.service.customer.bo.CustomerAddBO;
 import org.example.warehousemanagersystem.service.customer.bo.CustomerGetBO;
+import org.example.warehousemanagersystem.service.customer.bo.CustomerLoginBO;
 import org.example.warehousemanagersystem.service.customer.pojo.CustomerPOJO;
 import org.example.warehousemanagersystem.service.customer.service.CustomerService;
 import org.example.warehousemanagersystem.service.customer.vo.CustomerListVO;
 import org.example.warehousemanagersystem.service.customer.vo.CustomerVO;
+import org.example.warehousemanagersystem.service.user.bo.UserLoginBO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -65,4 +67,18 @@ public class CustomerController {
         return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
 
     }
+    @PostMapping("/login")
+    @ResponseBody
+    public String login(@RequestBody CustomerLoginBO customerLoginBO){
+        RetStatus<Object> retStatus = new RetStatus<>();
+        try{
+            retStatus= customerService.login(customerLoginBO);
+
+        }catch (Exception e){
+            retStatus.set("-1", e.getMessage());
+        }
+        return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
+
+    }
+
 }

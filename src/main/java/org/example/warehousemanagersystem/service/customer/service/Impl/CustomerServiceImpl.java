@@ -1,15 +1,14 @@
 package org.example.warehousemanagersystem.service.customer.service.Impl;
 
+import cn.dev33.satoken.stp.StpUtil;
 import org.example.warehousemanagersystem.common.RetStatus;
-import org.example.warehousemanagersystem.service.customer.bo.CustomerAddBO;
-import org.example.warehousemanagersystem.service.customer.bo.CustomerDeleteBO;
-import org.example.warehousemanagersystem.service.customer.bo.CustomerGetBO;
-import org.example.warehousemanagersystem.service.customer.bo.CustomerUpdateBO;
+import org.example.warehousemanagersystem.service.customer.bo.*;
 import org.example.warehousemanagersystem.service.customer.mapper.CustomerMapper;
 import org.example.warehousemanagersystem.service.customer.pojo.CustomerPOJO;
 import org.example.warehousemanagersystem.service.customer.service.CustomerService;
 import org.example.warehousemanagersystem.service.customer.vo.CustomerVO;
 import org.example.warehousemanagersystem.service.role.bo.RoleDeleteBO;
+import org.example.warehousemanagersystem.service.user.bo.UserLoginBO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -81,5 +80,23 @@ public class CustomerServiceImpl implements CustomerService {
     public Long getLong(CustomerGetBO customerGetBO) {
         Long total= customerMapper.getLong(customerGetBO);
         return total;
+    }
+
+    @Override
+    public RetStatus<Object> login(CustomerLoginBO customerLoginBO) {
+        RetStatus<Object>  retStatus = new RetStatus<>();
+        CustomerGetBO customerGetBO=new CustomerGetBO();
+        customerGetBO.setAccount(customerLoginBO.getAccount());
+        CustomerVO one = customerMapper.getOne(customerGetBO);
+        if (one==null){
+            retStatus.set("-1","不存在改账号，请注册");
+            return retStatus;
+        }
+        if (!one.getPassWord().equals(customerLoginBO.getPassWord())){
+            retStatus.set("-1","密码错误");
+            return retStatus;
+        }
+        StpUtil.isLogin(customerLoginBO.getAccount());
+        return   retStatus;
     }
 }

@@ -1,13 +1,11 @@
 package org.example.warehousemanagersystem.service.customer.service;
 
 import org.example.warehousemanagersystem.common.RetStatus;
-import org.example.warehousemanagersystem.service.customer.bo.CustomerAddBO;
-import org.example.warehousemanagersystem.service.customer.bo.CustomerDeleteBO;
-import org.example.warehousemanagersystem.service.customer.bo.CustomerGetBO;
-import org.example.warehousemanagersystem.service.customer.bo.CustomerUpdateBO;
+import org.example.warehousemanagersystem.service.customer.bo.*;
 import org.example.warehousemanagersystem.service.customer.vo.CustomerVO;
 import org.example.warehousemanagersystem.service.role.bo.RoleDeleteBO;
 import org.example.warehousemanagersystem.service.role.pojo.RolePOJO;
+import org.example.warehousemanagersystem.service.user.bo.UserLoginBO;
 import org.example.warehousemanagersystem.service.user.vo.UserGetVO;
 
 import java.util.List;
@@ -21,4 +19,6 @@ public interface CustomerService {
 
 
     Long getLong(CustomerGetBO customerGetBO);
+
+    RetStatus<Object> login(CustomerLoginBO customerLoginBO);
 }
