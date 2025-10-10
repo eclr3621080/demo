@@ -1,5 +1,6 @@
 package org.example.warehousemanagersystem.service.order.bo;
 
+import io.swagger.v3.oas.models.security.SecurityScheme;
 import lombok.Data;
 import org.example.warehousemanagersystem.common.BaseGetBO;
 import org.example.warehousemanagersystem.service.order.pojo.OrderPOJO;
@@ -20,7 +21,7 @@ public class OrderGetBO extends BaseGetBO {
     private String updateTime;
     private String orderNo;
     private String orderPrice;
-    private String orderStatus;
+    private Integer orderStatus;
     private String account;
     private String orderPayName;
     private String orderGoods;

@@ -7,11 +7,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.warehousemanagersystem.common.RetStatus;
 import org.example.warehousemanagersystem.service.goods.bo.GoodsGetBO;
 import org.example.warehousemanagersystem.service.goods.vo.GoodsGetVO;
+import org.example.warehousemanagersystem.service.order.bo.OrderAddBO;
 import org.example.warehousemanagersystem.service.order.bo.OrderGetBO;
 import org.example.warehousemanagersystem.service.order.bo.OrderUpdateBO;
 import org.example.warehousemanagersystem.service.order.service.OrderService;
 import org.example.warehousemanagersystem.service.order.vo.OrderGetVO;
 import org.example.warehousemanagersystem.service.order.vo.OrderListVO;
+import org.example.warehousemanagersystem.service.user.bo.UserAddBO;
 import org.example.warehousemanagersystem.service.user.bo.UserUpdateBO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,6 +50,7 @@ public class OrderController {
         }catch (Exception e){
             retStatus.set("-1", e.getMessage());
         }
+
         return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
 
     }
@@ -78,5 +81,16 @@ public class OrderController {
         }
         return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
 
+    }
+    @PostMapping("/add")
+    @ResponseBody
+    public String addOrder(@RequestBody OrderAddBO orderAddBO){
+        RetStatus<Object> retStatus = new RetStatus<>();
+        try {
+            orderService.add(orderAddBO);
+        }catch (Exception e){
+            retStatus.set("-1", e.getMessage());
+        }
+        return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
     }
 }

@@ -45,4 +45,6 @@ public class CustomerAddBO {
      * 是否是vip
      */
     private Integer isVip;
+
+    private String nickName;
 }

@@ -144,7 +144,12 @@
           <if test="goodsName != null">
             AND goodsName = #{goodsName}
         </if>
-
+        <if test="ids != null and ids.size() > 0">
+        and id in
+        <foreach collection="ids" index="index" item="id" open="(" close=")" separator="," >
+            #{id}
+        </foreach>
+        </if>
     </sql>
 
 </mapper>

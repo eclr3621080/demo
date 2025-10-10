@@ -40,6 +40,12 @@
             <if test="buyNumber != null ">
                 buyNumber,
             </if>
+            <if test="nickName != null ">
+                nickName,
+            </if>
+            <if test="phone != null ">
+                phone,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="createTime != null and createTime != ''">
@@ -78,8 +84,18 @@
             <if test="buyNumber != null ">
                 #{buyNumber},
             </if>
+            <if test="nickName != null ">
+                #{nickName},
+            </if>
+            <if test="phone != null ">
+                #{phone},
+            </if>
         </trim>
     </insert>
+    <update id="update">
+
+    </update>
+    <delete id="delete"></delete>
 
     <select id="getList" resultType="org.example.warehousemanagersystem.service.customer.vo.CustomerVO" parameterType="org.example.warehousemanagersystem.service.customer.bo.CustomerGetBO">
         select * from f_store_customer
@@ -93,6 +109,12 @@
     <select id="getLong" resultType="java.lang.Long" parameterType="org.example.warehousemanagersystem.service.customer.bo.CustomerGetBO">
         select count(*) from f_store_customer where 1 = 1
         <include refid="getDataSQL"></include>
+    </select>
+    <select id="getOne" resultType="org.example.warehousemanagersystem.service.customer.vo.CustomerVO" parameterType="org.example.warehousemanagersystem.service.customer.bo.CustomerGetBO">
+        select * from f_store_customer
+        where  1=1
+        <include refid="getDataSQL"/>
+         limit 1
     </select>
     <sql id="getDataSQL">
         <if test="id != null">

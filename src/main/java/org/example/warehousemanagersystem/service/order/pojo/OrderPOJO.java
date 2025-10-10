@@ -20,7 +20,7 @@ public class OrderPOJO extends BaseFlagPOJO {
      private String updateTime;
      private String orderNo;
      private String orderPrice;
-     private String orderStatus;
+     private Integer orderStatus;
      private String account;
      private String orderPayName;
      private String orderAddress;

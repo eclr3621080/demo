@@ -1,5 +1,6 @@
 package org.example.warehousemanagersystem.controller.customer;
 
+import cn.dev33.satoken.stp.StpUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import lombok.extern.slf4j.Slf4j;
@@ -15,10 +16,7 @@ import org.example.warehousemanagersystem.service.user.bo.UserLoginBO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -54,6 +52,26 @@ public class CustomerController {
         return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
 
     }
+    @GetMapping("/detail")
+    @ResponseBody
+    public String detailCustomer(){
+        RetStatus<Object> retStatus = new RetStatus<>();
+        try{
+            CustomerGetBO  customerGetBO=new CustomerGetBO();
+            String account = StpUtil.getLoginId().toString();
+
+
+            customerGetBO.setAccount(account);
+           CustomerVO customerVO = customerService.getOne(customerGetBO);
+            retStatus.setData(customerVO);
+
+        }catch (Exception e){
+            retStatus.set("-1", e.getMessage());
+        }
+        return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
+
+    }
+
     @PostMapping("/add")
     @ResponseBody
     public String addCustomer(@RequestBody CustomerAddBO customerAddBO){

@@ -96,7 +96,10 @@ public class CustomerServiceImpl implements CustomerService {
             retStatus.set("-1","密码错误");
             return retStatus;
         }
-        StpUtil.isLogin(customerLoginBO.getAccount());
+        StpUtil.login(customerLoginBO.getAccount());
+        StpUtil.isLogin();
+        one.setToken(StpUtil.getTokenValue());
+        retStatus.setData(one);
         return   retStatus;
     }
 }

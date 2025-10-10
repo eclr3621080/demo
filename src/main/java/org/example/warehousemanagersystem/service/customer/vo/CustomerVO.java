@@ -12,5 +12,5 @@ import org.example.warehousemanagersystem.service.customer.pojo.CustomerPOJO;
 
 @Data
 public class CustomerVO extends CustomerPOJO {
-
+    private String token;
 }

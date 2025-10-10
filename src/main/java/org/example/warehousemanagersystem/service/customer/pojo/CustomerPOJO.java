@@ -51,4 +51,7 @@ public class CustomerPOJO extends BaseFlagPOJO {
     private Integer vipDate;
     private Integer status;
     private Integer buyNumber;
+    private String nickName;
+    private String phone;
+
 }
