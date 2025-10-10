@@ -17,4 +17,5 @@ public class GoodsGetBO extends BaseGetBO {
     private Integer id;
     private Set<Integer> ids;
     private String goodsName;
+    private Integer goodsType;
 }

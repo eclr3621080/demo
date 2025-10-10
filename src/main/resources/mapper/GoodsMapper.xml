@@ -144,6 +144,9 @@
           <if test="goodsName != null">
             AND goodsName = #{goodsName}
         </if>
+         <if test="goodsType != null">
+            AND goodsType = #{goodsType}
+        </if>
         <if test="ids != null and ids.size() > 0">
         and id in
         <foreach collection="ids" index="index" item="id" open="(" close=")" separator="," >
