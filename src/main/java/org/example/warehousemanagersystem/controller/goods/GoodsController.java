@@ -37,6 +37,12 @@ import java.util.List;
 public class GoodsController {
     @Autowired
     private GoodsService goodsService;
+
+    /**
+     * 添加商品
+     * @param goodsAddBO
+     * @return
+     */
     @PostMapping("/add")
     @ResponseBody
     public String addgoods(@RequestBody GoodsAddBO goodsAddBO){
@@ -48,6 +54,7 @@ public class GoodsController {
         }
         return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
     }
+
     @PostMapping("/list")
     @ResponseBody
     public String listgoods(@RequestBody GoodsGetBO goodsGetBO){
@@ -60,6 +67,7 @@ public class GoodsController {
         }
         return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
     }
+
     @PostMapping("/update")
     @ResponseBody
     public String updategoods(@RequestBody GoodsUpdateBO goodsUpdateBO){
@@ -84,6 +92,7 @@ public class GoodsController {
         }
         return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
     }
+
     @GetMapping("{id}")
     @ResponseBody
     public String infoGoods(@PathVariable Integer id){
