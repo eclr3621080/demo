@@ -3,7 +3,11 @@ package org.example.warehousemanagersystem.service.order.service.Impl;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.SystemUtils;
 import org.example.warehousemanagersystem.common.RetStatus;
+import org.example.warehousemanagersystem.service.customer.bo.CustomerGetBO;
+import org.example.warehousemanagersystem.service.customer.mapper.CustomerMapper;
+import org.example.warehousemanagersystem.service.customer.vo.CustomerVO;
 import org.example.warehousemanagersystem.service.goods.bo.GoodsGetBO;
 import org.example.warehousemanagersystem.service.goods.mapper.GoodsMapper;
 import org.example.warehousemanagersystem.service.order.bo.OrderAddBO;
@@ -16,15 +20,19 @@ import org.example.warehousemanagersystem.service.order.vo.OrderGetVO;
 import org.example.warehousemanagersystem.service.user.pojo.UserPOJO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Author: 沈琪
@@ -39,6 +47,13 @@ public class OrderServiceImpl implements OrderService {
     OrderMapper orderMapper;
     @Autowired
     GoodsMapper goodsMapper;
+    @Autowired
+    CustomerMapper customerMapper;
+    @Autowired
+    RedisTemplate<String, Object> redisTemplate;
+
+    @Autowired
+    SimpMessagingTemplate messagingTemplate;
     @Override
     public List<OrderGetVO> list(OrderGetBO orderGetBO) {
         try {
@@ -90,6 +105,18 @@ public class OrderServiceImpl implements OrderService {
     public OrderGetVO getone(OrderGetBO orderGetBO) {
         try {
             OrderGetVO  orderGetVO   =orderMapper.getOne(orderGetBO);
+            GoodsGetBO goodsGetBO=new  GoodsGetBO();
+            String orderGoods = orderGetVO.getOrderGoods();
+            String[] split = orderGoods.split(",");
+            Set<Integer> set = new HashSet<>();
+            for (String s1:split){
+                set.add(Integer.valueOf(s1));
+            }
+
+            goodsGetBO.setIds(set);
+
+            orderGetVO.setGoods(  goodsMapper.listGoods(goodsGetBO));
+
             return orderGetVO;
         }catch (Exception e){
             e.printStackTrace();
@@ -123,15 +150,25 @@ public class OrderServiceImpl implements OrderService {
        return total;
     }
 
+    /**
+     * 添加订单，把订单添加到redis，如果有新的订单，前端提醒
+     * @param orderAddBO
+     */
     @Override
     @Transactional
     public void add(OrderAddBO orderAddBO) {
 
         OrderPOJO orderPOJO = new OrderPOJO();
         long timestamp = System.currentTimeMillis();
-        orderPOJO.setOrderNo(timestamp+orderAddBO.getOrderGoods());
-        BeanUtils.copyProperties(orderAddBO,orderPOJO);
 
+        BeanUtils.copyProperties(orderAddBO,orderPOJO);
+        orderPOJO.setOrderNo("dingdan"+timestamp+orderAddBO.getOrderGoods());
+        String account = orderAddBO.getAccount();
+        CustomerGetBO customerGetBO=new CustomerGetBO();
+        customerGetBO.setAccount(account);
+        CustomerVO one = customerMapper.getOne(customerGetBO);
+        orderPOJO.setOrderMobile(Long.valueOf(one.getPhone()));
         orderMapper.addOrder(orderPOJO);
+
     }
 }

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.warehousemanagersystem.service.gamestype.mapper.GameTypeMapper">
+    <update id="update" parameterType="org.example.warehousemanagersystem.service.gamestype.bo.GameTypeUpdateBO">
+        update f_store_gametype
+        <trim prefix="set" suffixOverrides=",">
+            <if test="gameType != null and gameType != ''">
+                gameType = #{gameType},
+            </if>
+            <if test="gameName != null and gameName != ''">
+                gameName = #{gameName},
+            </if>
+            <if test="gameIcon != null and gameIcon != ''">
+                gameIcon = #{gameIcon},
+            </if>
+            <if test="gameNumber != null and gameNumber != ''">
+                gameNumber = #{gameNumber},
+            </if>
+            <if test="gameStatus != null and gameStatus != ''">
+                gameStatus = #{gameStatus},
+            </if>
+            <if test="isDelete != null and isDelete != ''">
+                isDelete = #{isDelete},
+            </if>
+            <if test="updateTime != null and updateTime != ''">
+                updateTime = now(),
+            </if>
+        </trim>
+        WHERE id =#{id}
+    </update>
+    <select id="getList" resultType="org.example.warehousemanagersystem.service.gamestype.vo.GameTypeVO" parameterType="org.example.warehousemanagersystem.service.gamestype.bo.GameTypeBO">
+        SELECT * from f_store_gametype
+        where 1 = 1<include refid="selectSql"/>
+        order by createTime desc
+        <if test="page != null">
+            limit #{pageSize},#{limit}
+        </if>
+    </select>
+    <select id="getLong" resultType="java.lang.Long">
+        select count(*) from f_store_gametype where 1 = 1
+        <include refid="selectSql"></include>
+    </select>
+
+    <sql id="selectSql">
+    <if test="id != null and id > 0 ">
+         and  id = #{id}
+    </if>
+        <if test="gameType != null and gameType >= 0 ">
+            and gameType = #{gameType}
+        </if>
+        <if test="gameName != null and gameName!=''  ">
+            and gameName = #{gameName}
+        </if>
+        <if test="gameStatus != null  ">
+            and gameStatus = #{gameStatus}
+        </if>
+         <if test="isDelete != null  ">
+            and isDelete = #{isDelete}
+        </if>
+    </sql>
+</mapper>

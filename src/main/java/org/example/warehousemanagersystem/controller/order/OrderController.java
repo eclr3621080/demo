@@ -18,6 +18,7 @@ import org.example.warehousemanagersystem.service.user.bo.UserUpdateBO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.socket.WebSocketHandler;
 
 import java.util.List;
 
@@ -34,6 +35,7 @@ import java.util.List;
 public class OrderController {
     @Autowired
     OrderService orderService;
+
     @PostMapping("/list")
     @ResponseBody
     public String listOrder(@RequestBody OrderGetBO orderGetBO){
@@ -82,12 +84,14 @@ public class OrderController {
         return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
 
     }
+
     @PostMapping("/add")
     @ResponseBody
     public String addOrder(@RequestBody OrderAddBO orderAddBO){
         RetStatus<Object> retStatus = new RetStatus<>();
         try {
             orderService.add(orderAddBO);
+
         }catch (Exception e){
             retStatus.set("-1", e.getMessage());
         }
