@@ -22,10 +22,14 @@ public class PeiWanPOJO extends BaseFlagPOJO {
     private String isSign;
     private BigDecimal star;
     private String idCard;
+    /**
+     * 是否违规
+     */
     private Integer isViolation;
     private String createTime;
     private String updateTime;
     private String avatar;
     private String remark;
     private Integer isliving;
+    private  Integer isDelete;
 }

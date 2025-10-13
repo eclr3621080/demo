@@ -4,19 +4,22 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import lombok.extern.slf4j.Slf4j;
 import org.example.warehousemanagersystem.common.RetStatus;
+import org.example.warehousemanagersystem.service.goods.bo.GoodsGetBO;
+import org.example.warehousemanagersystem.service.goods.bo.GoodsUpdateBO;
+import org.example.warehousemanagersystem.service.goods.vo.GoodsGetVO;
 import org.example.warehousemanagersystem.service.order.bo.OrderGetBO;
 import org.example.warehousemanagersystem.service.order.vo.OrderGetVO;
 import org.example.warehousemanagersystem.service.order.vo.OrderListVO;
 import org.example.warehousemanagersystem.service.peiwan.bo.PeiWanGetBO;
+import org.example.warehousemanagersystem.service.peiwan.bo.PeiWanUpdateBO;
+import org.example.warehousemanagersystem.service.peiwan.bo.PeiwanAddBO;
+import org.example.warehousemanagersystem.service.peiwan.bo.PeiwanDeleteBO;
 import org.example.warehousemanagersystem.service.peiwan.service.PeiWanService;
 import org.example.warehousemanagersystem.service.peiwan.vo.PeiWanGetVO;
 import org.example.warehousemanagersystem.service.peiwan.vo.PeiWanListVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,6 +36,12 @@ import java.util.List;
 public class PeiWanController {
     @Autowired
     private PeiWanService peiWanService;
+
+    /**
+     * 查看陪玩列表
+     * @param peiWanGetBO
+     * @return
+     */
     @PostMapping("/list")
     @ResponseBody
     public String listPeiWan(@RequestBody PeiWanGetBO peiWanGetBO){
@@ -52,5 +61,57 @@ public class PeiWanController {
 
         return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
     }
+    @GetMapping("{id}")
+    @ResponseBody
+    public String infoPeiWan(@PathVariable Integer id){
+        RetStatus<Object> retStatus = new RetStatus<>();
+        try{
+            PeiWanGetBO peiWanGetBO=new PeiWanGetBO();
+            peiWanGetBO.setId(id);
+            PeiWanGetVO list = peiWanService.getOne(peiWanGetBO);
 
+
+            retStatus.setData(list);
+        }catch (Exception e){
+            retStatus.set("-1", e.getMessage());
+        }
+        return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
+
+    }
+    @PostMapping("/update")
+    @ResponseBody
+    public String updatePeiWan(@RequestBody PeiWanUpdateBO peiWanUpdateBO){
+        RetStatus<Object> retStatus = new RetStatus<>();
+        try {
+            retStatus=peiWanService.update(peiWanUpdateBO);
+
+        }catch (Exception e){
+            retStatus.set("-1", e.getMessage());
+        }
+        return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
+    }
+    @PostMapping("/delete")
+    @ResponseBody
+    public String deletePeiWan(@RequestBody PeiwanDeleteBO peiWanUpdateBO){
+        RetStatus<Object> retStatus = new RetStatus<>();
+        try {
+            retStatus=peiWanService.delete(peiWanUpdateBO);
+
+        }catch (Exception e){
+            retStatus.set("-1", e.getMessage());
+        }
+        return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
+    }
+    @PostMapping("/add")
+    @ResponseBody
+    public String addPeiWan(@RequestBody PeiwanAddBO peiwanAddBO){
+        RetStatus<Object> retStatus = new RetStatus<>();
+        try {
+            peiWanService.add(peiwanAddBO);
+
+        }catch (Exception e){
+            retStatus.set("-1", e.getMessage());
+        }
+        return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
+    }
 }

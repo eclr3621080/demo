@@ -34,7 +34,7 @@
         </if>
 
     </sql>
-    <insert id="addOrder" parameterType="org.example.warehousemanagersystem.service.order.pojo.OrderPOJO" >
+    <insert id="addOrder" parameterType="org.example.warehousemanagersystem.service.order.pojo.OrderPOJO" useGeneratedKeys="true" keyProperty="id" >
         insert into f_store_order
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="orderNo != null">orderNo,</if>

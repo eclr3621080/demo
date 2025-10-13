@@ -102,32 +102,7 @@ public class UserController {
         return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
 
     }
-    @PostMapping("/login")
-    @ResponseBody
-    public String login(@RequestBody UserLoginBO userLoginBO){
-        RetStatus<Object> retStatus = new RetStatus<>();
-        try{
-            retStatus= userService.login(userLoginBO);
 
-        }catch (Exception e){
-            retStatus.set("-1", e.getMessage());
-        }
-        return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
-
-    }
-    @PostMapping("/logoutuser")
-    @ResponseBody
-    public String logout(@RequestBody UserLoginBO userLoginBO){
-        RetStatus<Object> retStatus = new RetStatus<>();
-        try{
-            retStatus= userService.logout(userLoginBO);
-
-        }catch (Exception e){
-            retStatus.set("-1", e.getMessage());
-        }
-        return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
-
-    }
 
 
     @PostMapping("/loginisorno")

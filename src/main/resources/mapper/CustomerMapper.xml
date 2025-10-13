@@ -4,9 +4,9 @@
     <insert id="add" parameterType="org.example.warehousemanagersystem.service.customer.pojo.CustomerPOJO"  useGeneratedKeys="true" keyProperty="id">
         insert into f_store_customer
         <trim prefix="(" suffix=")" suffixOverrides=",">
-        <if test="createTime != null and createTime != ''">
-            createTime,
-        </if>
+            <if test="createTime != null and createTime != ''">
+                createTime,
+            </if>
             <if test="account != null and account != ''">
                 account,
             </if>
@@ -95,7 +95,9 @@
     <update id="update">
 
     </update>
-    <delete id="delete"></delete>
+    <delete id="delete">
+
+    </delete>
 
     <select id="getList" resultType="org.example.warehousemanagersystem.service.customer.vo.CustomerVO" parameterType="org.example.warehousemanagersystem.service.customer.bo.CustomerGetBO">
         select * from f_store_customer
