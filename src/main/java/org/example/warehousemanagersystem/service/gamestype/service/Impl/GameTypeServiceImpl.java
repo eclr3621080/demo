@@ -1,7 +1,9 @@
 package org.example.warehousemanagersystem.service.gamestype.service.Impl;
 
 import org.example.warehousemanagersystem.common.RetStatus;
+import org.example.warehousemanagersystem.service.gamestype.bo.GameTypeAddBO;
 import org.example.warehousemanagersystem.service.gamestype.bo.GameTypeBO;
+import org.example.warehousemanagersystem.service.gamestype.bo.GameTypeDeleteBO;
 import org.example.warehousemanagersystem.service.gamestype.bo.GameTypeUpdateBO;
 import org.example.warehousemanagersystem.service.gamestype.mapper.GameTypeMapper;
 import org.example.warehousemanagersystem.service.gamestype.service.GameTypeService;
@@ -10,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -28,6 +29,11 @@ public class GameTypeServiceImpl implements GameTypeService {
     public List<GameTypeVO> getList(GameTypeBO gameTypeBO) {
         List<GameTypeVO> list=  gameTypeMapper.getList(gameTypeBO);
         return list;
+    }
+    @Override
+    public GameTypeVO getOne(GameTypeBO gameTypeBO) {
+        GameTypeVO gameTypeVO=  gameTypeMapper.getOne(gameTypeBO);
+        return gameTypeVO;
     }
 
     @Override
@@ -48,6 +54,42 @@ public class GameTypeServiceImpl implements GameTypeService {
          if (i!=1){
              retStatus.set("-1","数据有误，更新失败");
          }
+        return retStatus;
+    }
+
+    @Override
+    @Transactional
+    public void add(GameTypeAddBO gameTypeAddBO) {
+        gameTypeMapper.add(gameTypeAddBO);
+    }
+
+    @Override
+    @Transactional
+    public RetStatus<Object>  delete(GameTypeDeleteBO gameTypeDeleteBO) {
+        RetStatus<Object>  retStatus = new RetStatus<>();
+        if (gameTypeDeleteBO.getId()<=0){
+            retStatus.set("-1","输入id错误");
+            return retStatus;
+        }
+        GameTypeBO gameTypeBO=new GameTypeBO();
+        gameTypeBO.setId(gameTypeDeleteBO.getId());
+        GameTypeVO one = gameTypeMapper.getOne(gameTypeBO);
+        if (one==null){
+            retStatus.set("-1","不存在该游戏类型");
+            return retStatus;
+        }
+        if (one.getIsDelete()==1){
+            retStatus.set("-1","该游戏类型已经被删除");
+            return retStatus;
+        }
+        GameTypeUpdateBO gameTypeUpdateBO=new GameTypeUpdateBO();
+        gameTypeUpdateBO.setId(gameTypeDeleteBO.getId());
+        gameTypeUpdateBO.setIsDelete(1);
+        Integer update = gameTypeMapper.update(gameTypeUpdateBO);
+        if (update!=1){
+            retStatus.set("-1","删除失败");
+            return retStatus;
+        }
         return retStatus;
     }
 }

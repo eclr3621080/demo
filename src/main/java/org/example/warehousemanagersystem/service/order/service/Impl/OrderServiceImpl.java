@@ -126,6 +126,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional
     public RetStatus<Object> update(OrderUpdateBO orderUpdateBO) {
         RetStatus<Object> retStatus = new RetStatus<>();
         System.out.println(JSON.toJSONString(orderUpdateBO));

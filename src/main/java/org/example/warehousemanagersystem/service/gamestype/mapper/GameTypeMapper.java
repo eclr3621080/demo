@@ -1,6 +1,7 @@
 package org.example.warehousemanagersystem.service.gamestype.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.example.warehousemanagersystem.service.gamestype.bo.GameTypeAddBO;
 import org.example.warehousemanagersystem.service.gamestype.bo.GameTypeBO;
 import org.example.warehousemanagersystem.service.gamestype.bo.GameTypeUpdateBO;
 import org.example.warehousemanagersystem.service.gamestype.vo.GameTypeVO;
@@ -14,4 +15,8 @@ public interface GameTypeMapper {
     List<GameTypeVO> getList(GameTypeBO gameTypeBO);
 
     Integer update(GameTypeUpdateBO gameTypeUpdateBO);
+
+    void add(GameTypeAddBO gameTypeAddBO);
+
+    GameTypeVO getOne(GameTypeBO gameTypeBO);
 }

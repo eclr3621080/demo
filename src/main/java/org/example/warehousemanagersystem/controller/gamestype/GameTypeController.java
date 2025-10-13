@@ -8,7 +8,9 @@ import org.example.warehousemanagersystem.common.RetStatus;
 import org.example.warehousemanagersystem.service.customer.bo.CustomerGetBO;
 import org.example.warehousemanagersystem.service.customer.vo.CustomerListVO;
 import org.example.warehousemanagersystem.service.customer.vo.CustomerVO;
+import org.example.warehousemanagersystem.service.gamestype.bo.GameTypeAddBO;
 import org.example.warehousemanagersystem.service.gamestype.bo.GameTypeBO;
+import org.example.warehousemanagersystem.service.gamestype.bo.GameTypeDeleteBO;
 import org.example.warehousemanagersystem.service.gamestype.bo.GameTypeUpdateBO;
 import org.example.warehousemanagersystem.service.gamestype.service.GameTypeService;
 import org.example.warehousemanagersystem.service.gamestype.vo.GameTypeListVO;
@@ -62,6 +64,32 @@ public class GameTypeController {
         try {
             StpUtil.isLogin();
             retStatus = gameTypeService.update(gameTypeUpdateBO);
+        }catch (Exception e){
+            retStatus.set("-1", e.getMessage());
+        }
+        return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
+
+    }
+    @PostMapping("/add")
+    @ResponseBody
+    public String addGameType(@RequestBody GameTypeAddBO gameTypeAddBO){
+        RetStatus<Object> retStatus = new RetStatus<>();
+        try {
+            StpUtil.isLogin();
+            gameTypeService.add(gameTypeAddBO);
+        }catch (Exception e){
+            retStatus.set("-1", e.getMessage());
+        }
+        return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
+
+    }
+    @PostMapping("/delete")
+    @ResponseBody
+    public String deleteGameType(@RequestBody GameTypeDeleteBO gameTypeDeleteBO){
+        RetStatus<Object> retStatus = new RetStatus<>();
+        try {
+            StpUtil.isLogin();
+            retStatus = gameTypeService.delete(gameTypeDeleteBO);
         }catch (Exception e){
             retStatus.set("-1", e.getMessage());
         }

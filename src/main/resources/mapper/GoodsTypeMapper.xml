@@ -1,6 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.example.warehousemanagersystem.service.gamestype.mapper.GameTypeMapper">
+    <insert id="add" parameterType="org.example.warehousemanagersystem.service.gamestype.bo.GameTypeAddBO">
+        insert into  f_store_gametype
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="gameType != null ">
+            gameType,
+        </if>
+            <if test="gameName != null ">
+                gameName,
+        </if>
+            <if test="gameIcon != null ">
+                gameIcon,
+        </if>
+            <if test="gameNumber != null ">
+                gameNumber,
+        </if>
+            <if test="gameStatus != null ">
+                gameStatus,
+        </if>
+            <if test="isDelete != null ">
+                isDelete,
+        </if>
+            <if test="createTime != null ">
+                createTime,
+        </if>
+            <if test="updateTime != null ">
+                updateTime,
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="gameType != null ">
+                #{gameType},
+            </if>
+            <if test="gameName != null ">
+                #{gameName},
+            </if>
+            <if test="gameIcon != null ">
+                #{gameIcon},
+            </if>
+            <if test="gameNumber != null ">
+                #{gameNumber},
+            </if>
+            <if test="gameStatus != null ">
+                #{gameStatus},
+            </if>
+            <if test="isDelete != null ">
+                #{isDelete},
+            </if>
+            <if test="createTime != null ">
+                #{createTime},
+            </if>
+            <if test="updateTime != null ">
+                #{updateTime},
+            </if>
+        </trim>
+    </insert>
     <update id="update" parameterType="org.example.warehousemanagersystem.service.gamestype.bo.GameTypeUpdateBO">
         update f_store_gametype
         <trim prefix="set" suffixOverrides=",">
@@ -39,6 +94,12 @@
     <select id="getLong" resultType="java.lang.Long">
         select count(*) from f_store_gametype where 1 = 1
         <include refid="selectSql"></include>
+    </select>
+    <select id="getOne" resultType="org.example.warehousemanagersystem.service.gamestype.vo.GameTypeVO">
+        SELECT * from f_store_gametype
+        where 1 = 1<include refid="selectSql"/>
+        order by createTime desc
+
     </select>
 
     <sql id="selectSql">

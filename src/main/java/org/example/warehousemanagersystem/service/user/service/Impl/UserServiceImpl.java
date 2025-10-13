@@ -87,9 +87,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserGetVO getone(UserGetBO userGetBO) {
-
-
-
         return userTestMapper.getOne(userGetBO);
     }
 
