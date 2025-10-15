@@ -53,5 +53,6 @@ public class CustomerPOJO extends BaseFlagPOJO {
     private Integer buyNumber;
     private String nickName;
     private String phone;
+    private String idCard;
 
 }

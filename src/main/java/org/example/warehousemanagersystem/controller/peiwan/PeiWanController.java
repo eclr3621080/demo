@@ -4,16 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import lombok.extern.slf4j.Slf4j;
 import org.example.warehousemanagersystem.common.RetStatus;
-import org.example.warehousemanagersystem.service.goods.bo.GoodsGetBO;
-import org.example.warehousemanagersystem.service.goods.bo.GoodsUpdateBO;
-import org.example.warehousemanagersystem.service.goods.vo.GoodsGetVO;
-import org.example.warehousemanagersystem.service.order.bo.OrderGetBO;
-import org.example.warehousemanagersystem.service.order.vo.OrderGetVO;
-import org.example.warehousemanagersystem.service.order.vo.OrderListVO;
-import org.example.warehousemanagersystem.service.peiwan.bo.PeiWanGetBO;
-import org.example.warehousemanagersystem.service.peiwan.bo.PeiWanUpdateBO;
-import org.example.warehousemanagersystem.service.peiwan.bo.PeiwanAddBO;
-import org.example.warehousemanagersystem.service.peiwan.bo.PeiwanDeleteBO;
+import org.example.warehousemanagersystem.service.peiwan.bo.*;
 import org.example.warehousemanagersystem.service.peiwan.service.PeiWanService;
 import org.example.warehousemanagersystem.service.peiwan.vo.PeiWanGetVO;
 import org.example.warehousemanagersystem.service.peiwan.vo.PeiWanListVO;
@@ -70,13 +61,26 @@ public class PeiWanController {
             peiWanGetBO.setId(id);
             PeiWanGetVO list = peiWanService.getOne(peiWanGetBO);
 
-
             retStatus.setData(list);
         }catch (Exception e){
             retStatus.set("-1", e.getMessage());
         }
         return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
 
+    }
+    @PostMapping("/getlistbygametype")
+    @ResponseBody
+    public String getInfoByGameType(@RequestBody PeiWanGetByGameTypeBO peiWanGetByGameTypeBO){
+        RetStatus<Object> retStatus = new RetStatus<>();
+        try{
+
+            List<PeiWanGetVO> list = peiWanService.getPeiWanByGameType(peiWanGetByGameTypeBO);
+
+            retStatus.setData(list);
+        }catch (Exception e){
+            retStatus.set("-1", e.getMessage());
+        }
+        return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
     }
     @PostMapping("/update")
     @ResponseBody

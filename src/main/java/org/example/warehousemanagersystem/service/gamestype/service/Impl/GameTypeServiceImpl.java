@@ -1,5 +1,6 @@
 package org.example.warehousemanagersystem.service.gamestype.service.Impl;
 
+import com.alibaba.fastjson.JSONObject;
 import org.example.warehousemanagersystem.common.RetStatus;
 import org.example.warehousemanagersystem.service.gamestype.bo.GameTypeAddBO;
 import org.example.warehousemanagersystem.service.gamestype.bo.GameTypeBO;
@@ -50,6 +51,9 @@ public class GameTypeServiceImpl implements GameTypeService {
             retStatus.set("-1","数据错误");
             return retStatus;
         }
+        String gameIcon = gameTypeUpdateBO.getGameIcon();
+        RetStatus retStatus1 = JSONObject.parseObject(gameIcon, RetStatus.class);
+        gameTypeUpdateBO.setGameIcon((String) retStatus1.getData());
         Integer i = gameTypeMapper.update(gameTypeUpdateBO);
          if (i!=1){
              retStatus.set("-1","数据有误，更新失败");

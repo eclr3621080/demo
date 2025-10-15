@@ -4,11 +4,16 @@ import org.example.warehousemanagersystem.common.RedisService;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.types.RedisClientInfo;
+import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.junit.Test;
 
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -25,14 +30,23 @@ import java.util.concurrent.TimeUnit;
 public class sqtest {
     @Autowired
     RedisTemplate<String, Object> redisTemplate;
+    @Autowired
+    RedisService redisService;
     @Test
     public void test(){
         redisTemplate.opsForValue().set("sqsq","111",30, TimeUnit.MINUTES);
     }
     @Test
     public void test1(){
-        Object o = redisTemplate.opsForValue().get("sqsq");
-        System.out.println(o.toString());
+        Set<String> keys = redisTemplate.keys("*");
+        if (keys != null) {
+            for (String key : keys) {
+                Object value = redisTemplate.opsForValue().get(key);
+                System.out.println("Key: " + key + ", Value: " + value);
+            }
+        }
+
+        System.out.println(keys);
     }
 
 

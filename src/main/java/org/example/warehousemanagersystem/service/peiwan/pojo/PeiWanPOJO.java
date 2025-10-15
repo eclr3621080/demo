@@ -4,6 +4,7 @@ import lombok.Data;
 import org.example.warehousemanagersystem.common.BaseFlagPOJO;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * @Author: 沈琪
@@ -19,9 +20,10 @@ public class PeiWanPOJO extends BaseFlagPOJO {
     private String sex;
     private String birthday;
     private String address;
-    private String isSign;
+    private Integer isSign;
     private BigDecimal star;
     private String idCard;
+    private String games;
     /**
      * 是否违规
      */
@@ -32,4 +34,9 @@ public class PeiWanPOJO extends BaseFlagPOJO {
     private String remark;
     private Integer isliving;
     private  Integer isDelete;
+    private  Integer violationDay;
+    private String  rank;
+    private Integer payType;
+    private BigDecimal price;
+    private Integer peiwanNumber;
 }

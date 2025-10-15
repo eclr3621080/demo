@@ -2,8 +2,11 @@ package org.example.warehousemanagersystem.service.order.vo;
 
 import lombok.Data;
 import org.example.warehousemanagersystem.common.BaseFlagPOJO;
+import org.example.warehousemanagersystem.service.assess.pojo.AssessPOJO;
+import org.example.warehousemanagersystem.service.gamestype.vo.GameTypeVO;
 import org.example.warehousemanagersystem.service.goods.vo.GoodsGetVO;
 import org.example.warehousemanagersystem.service.order.pojo.OrderPOJO;
+import org.example.warehousemanagersystem.service.peiwan.pojo.PeiWanPOJO;
 
 import java.util.List;
 
@@ -16,5 +19,8 @@ import java.util.List;
 
 @Data
 public class OrderGetVO extends OrderPOJO {
-    private List<GoodsGetVO> goods;
+    private GameTypeVO  gameType;
+    private PeiWanPOJO peiwan;
+    private AssessPOJO  assess;
+
 }

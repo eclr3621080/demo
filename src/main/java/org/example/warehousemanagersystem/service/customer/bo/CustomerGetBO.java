@@ -31,6 +31,7 @@ public class CustomerGetBO extends BaseGetBO {
 
 
     private  String passWord;
+    private String idCard;
     private String name;
     private Integer sex;
     private Integer buyNumber;

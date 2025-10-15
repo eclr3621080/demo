@@ -41,36 +41,57 @@
     <update id="update" parameterType="org.example.warehousemanagersystem.service.peiwan.bo.PeiWanUpdateBO">
         update f_store_peiwan
         <trim prefix="set" suffixOverrides=",">
-        <if test="nickName != null ">
-            nickName = #{nickName},
-        </if>
+            <if test="nickName != null ">
+                nickName = #{nickName},
+            </if>
             <if test="address != null ">
                 address = #{address},
-        </if>
+            </if>
             <if test="isSign != null ">
                 isSign = #{isSign},
-        </if>
+            </if>
             <if test="star != null ">
                 star = #{star},
-        </if>
+            </if>
             <if test="avatar != null ">
                 avatar = #{avatar},
-        </if>
+            </if>
             <if test="remark != null ">
                 remark = #{remark},
-        </if>
+            </if>
             <if test="isliving != null ">
                 isliving = #{isliving},
-        </if>
+            </if>
             <if test="isViolation != null ">
                 isViolation = #{isViolation},
-        </if>
+            </if>
             <if test="isDelete != null ">
                 isDelete = #{isDelete},
-        </if>
+            </if>
+            <if test="payType != null ">
+                payType = #{payType},
+            </if>
+            <if test="price != null ">
+                price = #{price},
+            </if>
+            <if test="rank != null ">
+                rank = #{rank},
+            </if>
+            <if test="violationDay != null ">
+                violationDay = #{violationDay},
+            </if>
+            <if test="games != null ">
+                games = #{games},
+            </if>
+            <if test="games != null ">
+                games = #{games},
+            </if>
+            <if test="peiwanNumber != null ">
+                peiwanNumber = #{peiwanNumber},
+            </if>
             <if test="updateTime != null and updateTime!='' ">
                 updateTime = now(),
-        </if>
+            </if>
         </trim>
         WHERE 1=1 and
         <if test="id != null and id>0">
@@ -95,6 +116,18 @@
     <if test="id != null and id > 0 ">
         and  id = #{id}
     </if>
+        <if test="isDelete != null  ">
+            and  isDelete = #{isDelete}
+        </if>
+         <if test="sex != null  ">
+            and  sex = #{sex}
+        </if>
+         <if test="sex != null  ">
+            and  sex = #{sex}
+        </if>
+         <if test="isSign != null  ">
+            and  isSign = #{isSign}
+        </if>
       <if test="nickName != null and nickName !='' ">
         and  nickName = #{nickName}
     </if>

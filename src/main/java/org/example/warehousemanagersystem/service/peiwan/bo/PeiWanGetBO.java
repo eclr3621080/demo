@@ -31,5 +31,8 @@ public class PeiWanGetBO extends BaseGetBO {
     private String updateTime;
     private String avatar;
     private String remark;
+    private Integer violationDay;
     private Integer isliving;
+    private Integer isDelete;
+    private String rank;
 }

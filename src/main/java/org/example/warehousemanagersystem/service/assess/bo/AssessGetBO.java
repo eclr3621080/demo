@@ -20,6 +20,7 @@ public class AssessGetBO extends BaseGetBO {
     private Integer size;
     private Integer peiwanId;
     private Integer orderId;
+    private Integer customerId;
     private String assessment;
     private BigDecimal star;
     private BigDecimal tips;

@@ -70,6 +70,8 @@ public class GameTypeController {
         return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
 
     }
+
+
     @PostMapping("/update")
     @ResponseBody
     public String updateGameType(@RequestBody GameTypeUpdateBO gameTypeUpdateBO){

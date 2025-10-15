@@ -20,5 +20,5 @@ public interface OrderService {
 
     Long getLong(OrderGetBO orderGetBO);
 
-    void add(OrderAddBO orderAddBO);
+    RetStatus<Object> add(OrderAddBO orderAddBO);
 }

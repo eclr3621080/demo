@@ -3,7 +3,9 @@ package org.example.warehousemanagersystem.service.order.bo;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import lombok.Data;
 import org.example.warehousemanagersystem.common.BaseGetBO;
+import org.example.warehousemanagersystem.service.customer.pojo.CustomerPOJO;
 import org.example.warehousemanagersystem.service.order.pojo.OrderPOJO;
+import org.example.warehousemanagersystem.service.peiwan.pojo.PeiWanPOJO;
 
 import java.util.List;
 
@@ -25,6 +27,7 @@ public class OrderGetBO extends BaseGetBO {
     private String account;
     private String orderPayName;
     private String orderGoods;
+    private Integer peiwanId;
     private Integer isDelete;
     private String remark;
     private List<Long> createTimeRange;
@@ -32,5 +35,7 @@ public class OrderGetBO extends BaseGetBO {
     private String createTimeEnd;
     private Integer current;
     private Integer size;
+    private CustomerPOJO customerPOJO;
+
 
 }

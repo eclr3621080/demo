@@ -118,5 +118,6 @@
          <if test="isDelete != null  ">
             and isDelete = #{isDelete}
         </if>
+
     </sql>
 </mapper>

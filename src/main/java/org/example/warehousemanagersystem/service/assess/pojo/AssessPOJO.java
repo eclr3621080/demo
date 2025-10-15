@@ -23,4 +23,5 @@ public class AssessPOJO extends BaseFlagPOJO {
     private String createTime;
     private String updateTime;
     private  Integer isDelete;
+    private Integer customerId;
 }

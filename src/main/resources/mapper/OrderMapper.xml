@@ -46,7 +46,13 @@
             <if test="orderMobile != null">orderMobile,</if>
             <if test="orderGoods != null">orderGoods,</if>
             <if test="isDelete != null">isDelete,</if>
-            <if test="remark != null">remark</if>
+            <if test="remark != null">remark,</if>
+            <if test="peiwanId != null">peiwanId,</if>
+            <if test="orderPayType != null">orderPayType,</if>
+            <if test="orderGameTypeId != null">orderGameTypeId,</if>
+            <if test="orderNumber != null">orderNumber,</if>
+            <if test="customerId != null">customerId,</if>
+            <if test="orderPayCustomerId != null">orderPayCustomerId,</if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="orderNo != null">#{orderNo},</if>
@@ -58,7 +64,13 @@
             <if test="orderMobile != null">#{orderMobile},</if>
             <if test="orderGoods != null">#{orderGoods},</if>
             <if test="isDelete != null">#{isDelete},</if>
-            <if test="remark != null">#{remark}</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="peiwanId != null">#{peiwanId},</if>
+            <if test="orderPayType != null">#{orderPayType},</if>
+            <if test="orderGameTypeId != null">#{orderGameTypeId},</if>
+            <if test="orderNumber != null">#{orderNumber},</if>
+            <if test="customerId != null">#{customerId},</if>
+            <if test="orderPayCustomerId != null">#{orderPayCustomerId},</if>
         </trim>
     </insert>
     <update id="updateOrder" parameterType="org.example.warehousemanagersystem.service.order.bo.OrderUpdateBO" >

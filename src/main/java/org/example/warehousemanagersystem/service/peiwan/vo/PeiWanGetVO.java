@@ -1,7 +1,11 @@
 package org.example.warehousemanagersystem.service.peiwan.vo;
 
 import lombok.Data;
+import org.example.warehousemanagersystem.service.gamestype.pojo.GameTypePOJO;
+import org.example.warehousemanagersystem.service.gamestype.vo.GameTypeVO;
 import org.example.warehousemanagersystem.service.peiwan.pojo.PeiWanPOJO;
+
+import java.util.List;
 
 /**
  * @Author: 沈琪
@@ -12,4 +16,5 @@ import org.example.warehousemanagersystem.service.peiwan.pojo.PeiWanPOJO;
 
 @Data
 public class PeiWanGetVO extends PeiWanPOJO {
+    private List<GameTypeVO> gameList;
 }

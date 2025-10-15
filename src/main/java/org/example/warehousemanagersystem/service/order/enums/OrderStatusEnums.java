@@ -3,10 +3,10 @@ package org.example.warehousemanagersystem.service.order.enums;
 public enum OrderStatusEnums {
      weizhifu(0,"未支付")
     ,yizhifu(1,"已支付")
-    ,yisongda(2,"已送达")
-    ,yiquxiao(4,"已取消")
+    ,yiquxiao(2,"已取消")
+    ,peiwanzhong(4,"陪玩中")
     ,yiwancheng(3,"已完成")
-
+    ,yipingjia(6,"已评价")
     ;
 
     public static String getEnum(int code){
