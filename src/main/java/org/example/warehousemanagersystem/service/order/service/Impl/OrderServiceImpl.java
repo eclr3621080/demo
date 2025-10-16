@@ -142,6 +142,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<OrderGetVO> managerList(OrderGetBO orderGetBO) {
+        return  orderMapper.getList(orderGetBO);
+    }
+
+    @Override
     public OrderGetVO getone(OrderGetBO orderGetBO) {
         try {
             OrderGetVO orderGetVO = orderMapper.getOne(orderGetBO);
@@ -158,6 +163,11 @@ public class OrderServiceImpl implements OrderService {
             e.printStackTrace();
 
         }
+        return null;
+    }
+
+    @Override
+    public OrderGetVO managergetone(OrderGetBO orderGetBO) {
         return null;
     }
 

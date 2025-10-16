@@ -13,8 +13,10 @@ import java.util.List;
 
 public interface OrderService {
     List<OrderGetVO> list(OrderGetBO orderGetBO);
+    List<OrderGetVO> managerList(OrderGetBO orderGetBO);
 
     OrderGetVO getone(OrderGetBO orderGetBO);
+    OrderGetVO managergetone(OrderGetBO orderGetBO);
 
     RetStatus<Object> update(OrderUpdateBO orderUpdateBO);
 
