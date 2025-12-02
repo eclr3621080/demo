@@ -41,9 +41,9 @@ public class ManagerOrder {
     OrderService orderService;
     @PostMapping("/list")
     @ResponseBody
-    public String listOrder(@RequestBody OrderGetBO orderGetBO){
+    public String listOrder(@RequestBody OrderGetBO orderGetBO) {
         RetStatus<Object> retStatus = new RetStatus<>();
-        try{
+        try {
             orderGetBO.setPage(orderGetBO.getCurrent());
             orderGetBO.setLimit(orderGetBO.getSize());
             List<OrderGetVO> list = orderService.list(orderGetBO);
@@ -52,23 +52,24 @@ public class ManagerOrder {
             Long ordertotal = orderService.getLong(orderGetBO);
             orderListVO.setTotal(ordertotal);
             retStatus.setData(orderListVO);
-        }catch (Exception e){
+        } catch (Exception e) {
             retStatus.set("-1", e.getMessage());
         }
 
         return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
 
     }
+
     @GetMapping("{id}")
     @ResponseBody
-    public String infoOrder(@PathVariable Integer id){
+    public String infoOrder(@PathVariable Integer id) {
         RetStatus<Object> retStatus = new RetStatus<>();
-        try{
-            OrderGetBO orderGetBO=new OrderGetBO();
+        try {
+            OrderGetBO orderGetBO = new OrderGetBO();
             orderGetBO.setId(id);
             OrderGetVO list = orderService.getone(orderGetBO);
             retStatus.setData(list);
-        }catch (Exception e){
+        } catch (Exception e) {
             retStatus.set("-1", e.getMessage());
         }
         return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
@@ -76,12 +77,12 @@ public class ManagerOrder {
     }
     @PostMapping("/update")
     @ResponseBody
-    public String updateOrder(@RequestBody OrderUpdateBO orderUpdateBO){
+    public String updateOrder(@RequestBody OrderUpdateBO orderUpdateBO) {
         RetStatus<Object> retStatus = new RetStatus<>();
         try {
             StpUtil.isLogin();
             retStatus = orderService.update(orderUpdateBO);
-        }catch (Exception e){
+        } catch (Exception e) {
             retStatus.set("-1", e.getMessage());
         }
         return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);
@@ -90,12 +91,12 @@ public class ManagerOrder {
 
     @PostMapping("/add")
     @ResponseBody
-    public String addOrder(@RequestBody OrderAddBO orderAddBO){
+    public String addOrder(@RequestBody OrderAddBO orderAddBO) {
         RetStatus<Object> retStatus = new RetStatus<>();
         try {
-            retStatus=  orderService.add(orderAddBO);
+            retStatus = orderService.add(orderAddBO);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             retStatus.set("-1", e.getMessage());
         }
         return JSONObject.toJSONString(retStatus, SerializerFeature.DisableCircularReferenceDetect);

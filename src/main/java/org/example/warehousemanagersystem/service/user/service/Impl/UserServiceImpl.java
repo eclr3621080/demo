@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void add(UserAddBO userAddBO) {
-//        StpUt il.checkLogin();
+        StpUtil.checkLogin();
         UserPOJO userPOJO = new UserPOJO();
         BeanUtils.copyProperties(userAddBO,userPOJO);
         if (userAddBO.getUserAvatar()!=null){
