@@ -1,6 +1,7 @@
 package org.example.warehousemanagersystem.service.user.bo;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Set;
 
@@ -28,7 +29,7 @@ public class UserUpdateBO {
     /**
      * 密码
      */
-    private String secret;
+    private String passWord;
     /**
      * 用户名称
      */
@@ -61,5 +62,11 @@ public class UserUpdateBO {
      * 修改时间
      */
     private String updateTime;
+    /**
+     *
+     */
+    private Integer roleId;
+    private String img;
+    private Integer status;
 
 }

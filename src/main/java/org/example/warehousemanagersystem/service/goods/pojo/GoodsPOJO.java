@@ -19,11 +19,11 @@ public class GoodsPOJO extends BaseFlagPOJO {
     /**
      * 创建时间
      */
-    private Date addTime;
+    private String createTime;
     /**
      * 商品头像/图片
      */
-    private String goodsImp;
+    private String goodsImg;
     /**
      * 商品数量
      */
@@ -68,4 +68,24 @@ public class GoodsPOJO extends BaseFlagPOJO {
      * 是否删除 (0:未删除, 1:已删除)
      */
     private Integer isDelete;
+    /**
+     * 类型
+     */
+    private Integer goodsType;
+    /**
+     * 每小时多少钱，还是一局多少钱
+     */
+    private Integer goodsPayModel;
+    /**
+     * 累计卖了多少
+     */
+    private  Integer goodsSaleNumber;
+    /**
+     * 商品星级
+     */
+    private Integer goodsStar;
+    /**
+     * 商品状态
+     */
+    private Integer goodsStatus;
 }

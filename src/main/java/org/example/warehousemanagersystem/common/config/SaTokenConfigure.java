@@ -27,9 +27,11 @@ public class SaTokenConfigure implements WebMvcConfigurer {
                             .match("/**")
                             // 排除登录、注册等公开路径 + Swagger所有资源路径
                             .notMatch(
-                                    "/user/loginuser",
+                                    "/customer/login",
                                     "/user/infouser",
                                     "/auth/register",
+                                    "/auth/login",
+                                    "/order/list",
                                     "/error",
                                     // Swagger UI 页面及静态资源
                                     "/swagger-ui.html",

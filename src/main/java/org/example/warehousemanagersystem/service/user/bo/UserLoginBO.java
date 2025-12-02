@@ -11,6 +11,6 @@ import lombok.Data;
 
 @Data
 public class UserLoginBO {
-    private String employeeNo;
-    private String  secret;
+    private String password;
+    private String  userName;
 }

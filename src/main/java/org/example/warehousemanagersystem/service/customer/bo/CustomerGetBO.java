@@ -1,7 +1,9 @@
 package org.example.warehousemanagersystem.service.customer.bo;
 
 import lombok.Data;
+import org.example.warehousemanagersystem.common.BaseGetBO;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -12,11 +14,12 @@ import java.util.Date;
  */
 
 @Data
-public class CustomerGetBO {
+public class CustomerGetBO extends BaseGetBO {
+    private Integer id;
     /**
      * 创建时间
      */
-    private Date addtime;
+    private String createTime;
     /**
      * 客户账号
      */
@@ -25,5 +28,20 @@ public class CustomerGetBO {
      * 头像
      */
     private String customerProfile;
+
+
+    private  String passWord;
+    private String idCard;
+    private String name;
+    private Integer sex;
+    private Integer buyNumber;
+    private String remark;
+    private Integer status;
+    private String vipDate;
+    private BigDecimal vipDiscount;
+    private String isVip;
+
+    private Integer current;
+    private Integer size;
 
 }

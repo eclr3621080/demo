@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.warehousemanagersystem.service.order.mapper.OrderMapper">
+    <sql id="selectSql">
+        <if test="id != null and id > 0 ">
+            and id = #{id}
+        </if>
+        <if test="orderNo != null and orderNo !='' ">
+            and orderNo = #{orderNo}
+        </if>
+         <if test="orderPrice != null and orderPrice >0 ">
+            and orderPrice = #{orderPrice}
+        </if>
+        <if test="account != null and account >0 ">
+            and account = #{account}
+        </if>
+          <if test="orderPayName != null and orderPayName !='' ">
+            and orderPayName = #{orderPayName}
+        </if>
+         <if test="orderGoods != null and orderGoods !='' ">
+            and orderGoods = #{orderGoods}
+        </if>
+         <if test="updateTime != null and updateTime !='' ">
+            and updateTime = #{updateTime}
+        </if>
+        <if test="orderStatus != null ">
+            and orderStatus = #{orderStatus}
+        </if>
+        <if test="createTimeStart != null and createTimeStart != ''">
+            AND createTime &gt;= #{createTimeStart}
+        </if>
+        <if test="createTimeEnd != null and createTimeEnd != ''">
+            AND createTime &lt; #{createTimeEnd}
+        </if>
+
+    </sql>
+    <insert id="addOrder" parameterType="org.example.warehousemanagersystem.service.order.pojo.OrderPOJO" useGeneratedKeys="true" keyProperty="id" >
+        insert into f_store_order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderNo != null">orderNo,</if>
+            <if test="orderPrice != null">orderPrice,</if>
+            <if test="orderStatus != null">orderStatus,</if>
+            <if test="account != null">account,</if>
+            <if test="orderPayName != null">orderPayName,</if>
+            <if test="orderAddress != null">orderAddress,</if>
+            <if test="orderMobile != null">orderMobile,</if>
+            <if test="orderGoods != null">orderGoods,</if>
+            <if test="isDelete != null">isDelete,</if>
+            <if test="remark != null">remark,</if>
+            <if test="peiwanId != null">peiwanId,</if>
+            <if test="orderPayType != null">orderPayType,</if>
+            <if test="orderGameTypeId != null">orderGameTypeId,</if>
+            <if test="orderNumber != null">orderNumber,</if>
+            <if test="customerId != null">customerId,</if>
+            <if test="orderPayCustomerId != null">orderPayCustomerId,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderNo != null">#{orderNo},</if>
+            <if test="orderPrice != null">#{orderPrice},</if>
+            <if test="orderStatus != null">#{orderStatus},</if>
+            <if test="account != null">#{account},</if>
+            <if test="orderPayName != null">#{orderPayName},</if>
+            <if test="orderAddress != null">#{orderAddress},</if>
+            <if test="orderMobile != null">#{orderMobile},</if>
+            <if test="orderGoods != null">#{orderGoods},</if>
+            <if test="isDelete != null">#{isDelete},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="peiwanId != null">#{peiwanId},</if>
+            <if test="orderPayType != null">#{orderPayType},</if>
+            <if test="orderGameTypeId != null">#{orderGameTypeId},</if>
+            <if test="orderNumber != null">#{orderNumber},</if>
+            <if test="customerId != null">#{customerId},</if>
+            <if test="orderPayCustomerId != null">#{orderPayCustomerId},</if>
+        </trim>
+    </insert>
+    <update id="updateOrder" parameterType="org.example.warehousemanagersystem.service.order.bo.OrderUpdateBO" >
+        update f_store_order
+        <trim prefix="set" suffixOverrides=",">
+            <if test="orderPrice != null ">
+                orderPrice = #{orderPrice},
+            </if>
+            <if test="account != null and account != ''">
+                account = #{account},
+            </if>
+            <if test="orderPayName != null and orderPayName != ''">
+                orderPayName = #{orderPayName},
+            </if>
+            <if test="orderGoods != null and orderGoods != ''">
+                orderGoods = #{orderGoods},
+            </if>
+            <if test="isDelete != null ">
+                isDelete = #{isDelete},
+            </if>
+            <if test="orderStatus != null ">
+                orderStatus = #{orderStatus},
+            </if>
+            <if test="remark != null and remark!=''">
+                remark = #{remark},
+            </if>
+            <if test="orderAddress != null and orderAddress !=''">
+                orderAddress = #{orderAddress},
+            </if>
+            <if test="orderMobile != null ">
+                orderMobile = #{orderMobile},
+            </if>
+
+                updateTime = now(),
+
+        </trim>
+        WHERE 1=1 and
+        <if test="id != null and id>0">
+            id = #{id}
+        </if>
+
+
+    </update>
+    <select id="getList" resultType="org.example.warehousemanagersystem.service.order.vo.OrderGetVO" parameterType="org.example.warehousemanagersystem.service.order.bo.OrderGetBO">
+        SELECT * from f_store_order
+        where 1 = 1<include refid="selectSql"/>
+        order by createTime desc
+        <if test="page != null">
+            limit #{pageSize},#{limit}
+        </if>
+    </select>
+    <select id="getOne" resultType="org.example.warehousemanagersystem.service.order.vo.OrderGetVO" parameterType="org.example.warehousemanagersystem.service.order.bo.OrderGetBO">
+        SELECT * from f_store_order
+        where 1 = 1<include refid="selectSql"/>
+        order by createTime desc
+
+    </select>
+    <select id="getLong" resultType="java.lang.Long" parameterType="org.example.warehousemanagersystem.service.order.bo.OrderGetBO">
+        select count(*) from f_store_order where 1 = 1
+        <include refid="selectSql"></include>
+    </select>
+</mapper>

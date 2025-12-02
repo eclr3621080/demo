@@ -18,7 +18,7 @@ public class GoodsUpdateBO {
     /**
      * 商品头像/图片
      */
-    private String goodsImp;
+    private String goodsImg;
     /**
      * 商品数量
      */

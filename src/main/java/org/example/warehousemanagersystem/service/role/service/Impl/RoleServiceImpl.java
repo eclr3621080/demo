@@ -38,7 +38,7 @@ public class RoleServiceImpl implements RoleService {
     public RetStatus<Object> deleteRole(RoleDeleteBO roleDeleteBO) {
         RetStatus<Object> retStatus = new RetStatus<>();
         if (roleDeleteBO.getId()==null ||  roleDeleteBO.getId()<=0) {
-            retStatus.set(-1,"数据异常");
+            retStatus.set("-1","数据异常");
         }
         roleMapper.delete(roleDeleteBO);
         return retStatus;
@@ -49,11 +49,11 @@ public class RoleServiceImpl implements RoleService {
     public RetStatus<Object> updateRole(RoleUpdateBO roleUpdateBO) {
         RetStatus<Object> retStatus = new RetStatus<>();
         if (roleUpdateBO.getId()==null ||  roleUpdateBO.getId()<=0) {
-            retStatus.set(-1,"数据异常");
+            retStatus.set("-1","数据异常");
         }
         Integer update = roleMapper.update(roleUpdateBO);
         if (update != 1) {
-            retStatus.set(-1,"修改失败");
+            retStatus.set("-1","修改失败");
         }
         return retStatus;
     }
@@ -61,9 +61,7 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public List<RoleVO> getRoleList(RoleGetBO roleGetBO) {
 
-        if (roleGetBO.getId()==null ||  roleGetBO.getId()<=0) {
-          return new ArrayList<>();
-        }
+
         List<RoleVO> list= roleMapper.getList(roleGetBO);
         return list;
     }
@@ -71,9 +69,7 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public RoleVO getRoleOne(RoleGetBO roleGetBO) {
 
-        if (roleGetBO.getId()==null ||  roleGetBO.getId()<=0) {
-            return   new RoleVO();
-        }
+
         RoleVO roleVO= roleMapper.getOne(roleGetBO);
         return roleVO;
     }

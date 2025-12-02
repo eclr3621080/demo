@@ -6,6 +6,7 @@ import org.example.warehousemanagersystem.service.user.bo.*;
 import org.example.warehousemanagersystem.service.user.pojo.UserPOJO;
 import org.example.warehousemanagersystem.service.user.vo.UserGetVO;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -21,10 +22,12 @@ public interface UserService {
     List<UserGetVO> list(UserGetBO userGetBO);
     UserGetVO getone(UserGetBO userGetBO);
     RetStatus<Object> login(UserLoginBO userGetBO);
-    RetStatus<Object> update(UserUpdateBO userUpdateBO);
+    RetStatus<Object> update(UserUpdateBO userUpdateBO) throws IOException;
 
 
     RetStatus<Object> delete(UserDeleteBO userDeleteBO);
 
     RetStatus<Object> logout(UserLoginBO userLoginBO);
+
+    Long getLong(UserGetBO userGetBO);
 }

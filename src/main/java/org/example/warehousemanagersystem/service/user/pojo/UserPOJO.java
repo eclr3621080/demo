@@ -21,7 +21,7 @@ public class UserPOJO  extends BaseFlagPOJO {
     /**
      * 创建时间
      */
-    private String addTime;
+    private String createTime;
     /**
      * 工号
      */
@@ -29,7 +29,7 @@ public class UserPOJO  extends BaseFlagPOJO {
     /**
      * 密码
      */
-    private String secret;
+    private String passWord;
     /**
      * 用户名称
      */
@@ -68,4 +68,7 @@ public class UserPOJO  extends BaseFlagPOJO {
     private List<Integer> roles;
 
    private Integer roleId;
+   private Integer status;
+   private String email;
+   private String userRealName;
 }

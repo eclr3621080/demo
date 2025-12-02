@@ -1,0 +1,11 @@
+<!--<bean id="student" class="org.example.warehousemanagersystem.study.DI依赖注入.Student">-->
+<!--    <constructor-arg name="id" value="1001"/>-->
+<!--    <constructor-arg name="name" value="张三"/>-->
+<!--    <constructor-arg name="score" value="99.7"/>-->
+<!--</bean>-->
+<bean name="student" class="org.example.warehousemanagersystem.study.DI依赖注入.Student">
+<property name="id" value="1001"/>
+<property name="name" value="张三"/>
+<property name="score" value="99.5"/>
+</bean>
+

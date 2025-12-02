@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.warehousemanagersystem.service.peiwan.mapper.PeiWanMapper">
+    <insert id="add" parameterType="org.example.warehousemanagersystem.service.peiwan.bo.PeiwanAddBO" useGeneratedKeys="true" keyProperty="id">
+        insert into f_store_peiwan
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="nickName != null">nickName,</if>
+            <if test="realName != null">realName,</if>
+            <if test="sex != null">sex,</if>
+            <if test="birthday != null">birthday,</if>
+            <if test="isSign != null">isSign,</if>
+            <if test="star != null">star,</if>
+            <if test="idCard != null">idCard,</if>
+            <if test="isViolation != null">isViolation,</if>
+            <if test="createTime != null">createTime,</if>
+            <if test="updateTime != null">updateTime,</if>
+            <if test="avatar != null">avatar,</if>
+            <if test="remark != null">remark,</if>
+            <if test="isliving != null">isliving,</if>
+            <if test="address != null">address,</if>
+            <if test="isDelete != null">isDelete,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="nickName != null">#{nickName},</if>
+            <if test="realName != null">#{realName},</if>
+            <if test="sex != null">#{sex},</if>
+            <if test="birthday != null">#{birthday},</if>
+            <if test="isSign != null">#{isSign},</if>
+            <if test="star != null">#{star},</if>
+            <if test="idCard != null">#{idCard},</if>
+            <if test="isViolation != null">#{isViolation},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="avatar != null">#{avatar},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="isliving != null">#{isliving},</if>
+            <if test="address != null">#{address},</if>
+            <if test="isDelete != null">#{isDelete},</if>
+        </trim>
+    </insert>
+    <update id="update" parameterType="org.example.warehousemanagersystem.service.peiwan.bo.PeiWanUpdateBO">
+        update f_store_peiwan
+        <trim prefix="set" suffixOverrides=",">
+            <if test="nickName != null ">
+                nickName = #{nickName},
+            </if>
+            <if test="address != null ">
+                address = #{address},
+            </if>
+            <if test="isSign != null ">
+                isSign = #{isSign},
+            </if>
+            <if test="star != null ">
+                star = #{star},
+            </if>
+            <if test="avatar != null ">
+                avatar = #{avatar},
+            </if>
+            <if test="remark != null ">
+                remark = #{remark},
+            </if>
+            <if test="isliving != null ">
+                isliving = #{isliving},
+            </if>
+            <if test="isViolation != null ">
+                isViolation = #{isViolation},
+            </if>
+            <if test="isDelete != null ">
+                isDelete = #{isDelete},
+            </if>
+            <if test="payType != null ">
+                payType = #{payType},
+            </if>
+            <if test="price != null ">
+                price = #{price},
+            </if>
+            <if test="rank != null ">
+                rank = #{rank},
+            </if>
+            <if test="violationDay != null ">
+                violationDay = #{violationDay},
+            </if>
+            <if test="games != null ">
+                games = #{games},
+            </if>
+            <if test="games != null ">
+                games = #{games},
+            </if>
+            <if test="peiwanNumber != null ">
+                peiwanNumber = #{peiwanNumber},
+            </if>
+            <if test="updateTime != null and updateTime!='' ">
+                updateTime = now(),
+            </if>
+        </trim>
+        WHERE 1=1 and
+        <if test="id != null and id>0">
+            id = #{id}
+        </if>
+    </update>
+
+    <select id="getList" resultType="org.example.warehousemanagersystem.service.peiwan.vo.PeiWanGetVO" parameterType="org.example.warehousemanagersystem.service.peiwan.bo.PeiWanGetBO">
+        SELECT * from f_store_peiwan
+        where 1 = 1<include refid="selectSql"/>
+        order by createTime desc
+        <if test="page != null">
+            limit #{pageSize},#{limit}
+        </if>
+    </select>
+    <select id="getOne" resultType="org.example.warehousemanagersystem.service.peiwan.vo.PeiWanGetVO">
+        SELECT * from f_store_peiwan
+        where 1 = 1<include refid="selectSql"/>
+        order by createTime desc
+    </select>
+    <sql id="selectSql">
+    <if test="id != null and id > 0 ">
+        and  id = #{id}
+    </if>
+        <if test="isDelete != null  ">
+            and  isDelete = #{isDelete}
+        </if>
+         <if test="sex != null  ">
+            and  sex = #{sex}
+        </if>
+         <if test="sex != null  ">
+            and  sex = #{sex}
+        </if>
+         <if test="isSign != null  ">
+            and  isSign = #{isSign}
+        </if>
+      <if test="nickName != null and nickName !='' ">
+        and  nickName = #{nickName}
+    </if>
+    </sql>
+</mapper>

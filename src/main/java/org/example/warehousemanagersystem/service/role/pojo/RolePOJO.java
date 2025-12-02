@@ -11,10 +11,12 @@ import lombok.Data;
 
 @Data
 public class RolePOJO {
+
     /**
      * id
      */
     private Integer id;
+    private Integer userId;
     /**
      * 角色标识
      */
@@ -22,15 +24,15 @@ public class RolePOJO {
     /**
      * 角色名称
      */
-    private String rolename;
+    private String roleName;
     /**
      * 菜单id
      */
-    private Integer menuid;
+    private Integer menuId;
     /**
      * 创建时间
      */
-    private String addtime;
+    private String createtime;
     /**
      * 描述
      */
@@ -47,5 +49,6 @@ public class RolePOJO {
      * 修改时间
      */
     private String updatetime;
+
 
 }

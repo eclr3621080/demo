@@ -16,7 +16,7 @@ public class CustomerAddBO {
     /**
      * 创建时间
      */
-    private Date addtime;
+    private String createTime;
     /**
      * 客户账号
      */
@@ -28,7 +28,7 @@ public class CustomerAddBO {
     /**
      * 密码
      */
-    private String secret;
+    private String passWord;
     /**
      * 姓名
      */
@@ -45,4 +45,6 @@ public class CustomerAddBO {
      * 是否是vip
      */
     private Integer isVip;
+
+    private String nickName;
 }
