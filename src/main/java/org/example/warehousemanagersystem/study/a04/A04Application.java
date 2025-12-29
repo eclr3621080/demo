@@ -1,6 +1,8 @@
 package org.example.warehousemanagersystem.study.a04;
 
 import org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.CommonAnnotationBeanPostProcessor;
 import org.springframework.context.annotation.ContextAnnotationAutowireCandidateResolver;
@@ -27,8 +29,10 @@ public class A04Application {
         context.registerBean(AutowiredAnnotationBeanPostProcessor.class);//@Autowired,@Value
         context.getDefaultListableBeanFactory().setAutowireCandidateResolver(new ContextAnnotationAutowireCandidateResolver());//自动装备解析器
         context.registerBean(CommonAnnotationBeanPostProcessor.class);//Resource @PostConstruct @PreDestroy
+         ConfigurationPropertiesBindingPostProcessor.register(context.getDefaultListableBeanFactory());
 //        context.registerBean();
         context.refresh();//初始化容器
+        System.out.println(context.getBean(Bean4.class));
         context.close();
     }
 }

@@ -22,6 +22,8 @@ public class Bean1 {
     private static final Logger logger = LoggerFactory.getLogger(Bean1.class);
 
     private Bean2 bean2;
+//    @Autowired
+//    private String aa;
 
     @Autowired
     public void setBean2(Bean2 bean2) {
@@ -50,5 +52,14 @@ public class Bean1 {
     @PreDestroy
     public void destroy() {
         logger.info("摧毁");
+    }
+
+    @Override
+    public String toString() {
+        return "Bean1{" +
+                "bean2=" + bean2 +
+                ", bean3=" + bean3 +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
