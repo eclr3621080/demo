@@ -8,7 +8,7 @@ package org.example.warehousemanagersystem.study.观察者;
  */
 
 
-public class BinaryObserver extends   Observer {
+public class BinaryObserver  extends   Observer {
     public BinaryObserver(Subject subject) {
         this.subject = subject;
         this.subject.attach(this);
@@ -16,6 +16,7 @@ public class BinaryObserver extends   Observer {
 
     @Override
     public void update() {
-        System.out.println("BinaryObserver update"+Integer.toBinaryString(subject.getState()));
+        System.out.println( "Binary String: "
+                + Integer.toBinaryString( subject.getState() ) );
     }
 }

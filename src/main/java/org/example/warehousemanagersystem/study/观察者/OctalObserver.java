@@ -15,6 +15,7 @@ public class OctalObserver extends Observer {
     }
     @Override
     public void update() {
-        System.out.println("OctalObserver update"+Integer.toBinaryString(subject.getState()));
+        System.out.println( "Octal String: "
+                + Integer.toOctalString( subject.getState() ) );
     }
 }

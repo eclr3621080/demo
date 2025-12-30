@@ -16,6 +16,7 @@ public class HaxaObserver extends Observer {
 
     @Override
     public void update() {
-        System.out.println("HaxaObserver update"+Integer.toBinaryString(subject.getState()));
+        System.out.println( "Hex String: "
+                + Integer.toHexString( subject.getState() ).toUpperCase() );
     }
 }
