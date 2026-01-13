@@ -12,10 +12,12 @@ public class StatePatternDemo {
     public static void main(String[] args) {
         Context context = new Context();
         StartState startState = new StartState();
+        //启动当前状态
         startState.doAction(context);
+        System.out.println(context.getState().toString());
         StopState stopState = new StopState();
+        //结束当前状态
         stopState.doAction(context);
-
         System.out.println(context.getState().toString());
     }
 }

@@ -28,10 +28,6 @@ public class ColorFactory extends AbstractFactory {
 
 
 
-
-
-
-
     @Override
     public Shape getShape(String shape) {
         return null;

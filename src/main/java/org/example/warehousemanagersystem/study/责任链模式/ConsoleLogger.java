@@ -9,6 +9,7 @@ package org.example.warehousemanagersystem.study.责任链模式;
 
 
 public class ConsoleLogger extends AbstractLogger{
+    //实现write方法
     @Override
     protected void write(String message) {
         System.out.println("Standard Console::Logger: " + message);

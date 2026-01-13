@@ -7,8 +7,9 @@ package org.example.warehousemanagersystem.study.备忘录模式;
  * @Version: 1.0
  */
 
-
+//实体类
 public class Originator {
+
     private String state;
 
     public void  setState(String state){

@@ -16,7 +16,7 @@ public  abstract  class AbstractLogger {
     protected int level;
 
     protected  AbstractLogger nextLogger;
-
+    //塞了一个抽象类，组成链表
     public void setNextLogger(AbstractLogger nextLogger) {
         this.nextLogger = nextLogger;
     }

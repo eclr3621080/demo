@@ -10,6 +10,8 @@ package org.example.warehousemanagersystem.study.装饰器模式;
 
 public class RedShapeDecorator extends ShapeDecorator {
     public RedShapeDecorator(Shape decoratedShape) {
+        //调用父类构造方法
+        //父类的的构造器是 填充shape
         super(decoratedShape);
     }
     @Override

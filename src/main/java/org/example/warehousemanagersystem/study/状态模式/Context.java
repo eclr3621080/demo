@@ -3,7 +3,7 @@ package org.example.warehousemanagersystem.study.状态模式;
 /**
  * @Author: 沈琪
  * @CreateTime: 2025-12-30
- * @Description:
+ * @Description: 实体类容器
  * @Version: 1.0
  */
 

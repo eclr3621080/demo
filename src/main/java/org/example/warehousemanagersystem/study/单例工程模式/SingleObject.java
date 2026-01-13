@@ -18,6 +18,10 @@ public class SingleObject {
     public static SingleObject getInstance(){
         return instance;
     }
+    //获取唯一可用的对象
+    public static SingleObject getInstance2(){
+        return instance;
+    }
     public void showMessage(){
         System.out.println("Hello World!");
     }

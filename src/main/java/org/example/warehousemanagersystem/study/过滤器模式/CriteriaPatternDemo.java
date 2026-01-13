@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * @Author: 沈琪
  * @CreateTime: 2025-12-22
- * @Description:
+ * @Description: 用于将对象的筛选过程封装起来，允许使用不同的筛选标准动态地筛选对象。
  * @Version: 1.0
  */
 

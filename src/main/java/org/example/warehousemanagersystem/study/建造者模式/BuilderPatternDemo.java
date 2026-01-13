@@ -13,9 +13,11 @@ public class BuilderPatternDemo {
         MealBuilder mealBuilder = new MealBuilder();
         Meal vegMeal = mealBuilder.prepareVegMeal();
         System.out.println("Veg Meal is "+vegMeal);
-
+        //用来展示刚刚塞入的数据
         vegMeal.showItems();
         System.out.println("Total Cost:"+vegMeal.getCost());
+
+
 
         Meal vegMeal1 = mealBuilder.prepareNonVegMeal();
         System.out.println("NonVeg Meal is "+vegMeal1);

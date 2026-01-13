@@ -6,6 +6,10 @@ import org.springframework.cglib.proxy.Factory;
  * @Author: 沈琪
  * @CreateTime: 2025-12-19
  * @Description:
+ * 在抽象工厂模式中，接口是负责创建一个相关对象的工厂，不需要显式指定它们的类。每个生成的工厂都能按照工厂模式提供对象
+ *
+ *
+ * 用抽象类作为返回值，if语句去找到相应的实现类，然后new出来返回，相应的实现类可以调用方法
  * @Version: 1.0
  */
 

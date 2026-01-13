@@ -10,6 +10,7 @@ package org.example.warehousemanagersystem.study.空对象模式;
 
 public class NullpatternDemo {
     public static void main(String[] args) {
+        //塞入数据，就行判断
         AbstractCustomer customer1 = CustomerFactory.getCustomer("Rob");
         AbstractCustomer customer2 = CustomerFactory.getCustomer("Bob");
         AbstractCustomer customer3 = CustomerFactory.getCustomer("Julie");

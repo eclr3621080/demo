@@ -9,12 +9,13 @@ package org.example.warehousemanagersystem.study.命令模式;
 
 
 public class BuyStock implements Order {
+    //实体类
     private Stock abcStock ;
-
+    //创建实体类
     public BuyStock(Stock stock) {
         this.abcStock  = stock;
     }
-
+    //执行实体类
     @Override
     public void execute() {
         abcStock.buy();

@@ -11,6 +11,7 @@ package org.example.warehousemanagersystem.study.建造者模式;
 public class MealBuilder {
     public Meal prepareVegMeal(){
         Meal meal = new Meal();
+        //存数据
         meal.addItem(new VegBurger());
         meal.addItem(new Coke());
         return meal;

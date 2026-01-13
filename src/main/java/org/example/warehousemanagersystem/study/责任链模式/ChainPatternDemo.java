@@ -12,16 +12,20 @@ package org.example.warehousemanagersystem.study.责任链模式;
 
 public class ChainPatternDemo {
     private static AbstractLogger getChainOfLoggers() {
-        AbstractLogger errorLogger = new ErrorLogger(AbstractLogger.ERROR);
-        AbstractLogger fileLogger = new FileLogger(AbstractLogger.ERROR);
+        //输入1 相当于new了 抽象类
+        AbstractLogger errorLogger = new ErrorLogger(AbstractLogger.INFO);
+        //输入2
+        AbstractLogger fileLogger = new FileLogger(AbstractLogger.DEBUG);
+        //输入3
         AbstractLogger consoleLogger = new ConsoleLogger(AbstractLogger.ERROR);
-
+        //组成链表
         errorLogger.setNextLogger(fileLogger);
         fileLogger.setNextLogger(consoleLogger);
         return errorLogger;
     }
 
     public static void main(String[] args) {
+        //组成一个链
         AbstractLogger loggerChain  = getChainOfLoggers();
         loggerChain.logMessage(AbstractLogger.INFO, "Hello World!");
 

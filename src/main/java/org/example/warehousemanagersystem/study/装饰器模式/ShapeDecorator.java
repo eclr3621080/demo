@@ -9,6 +9,7 @@ package org.example.warehousemanagersystem.study.装饰器模式;
 
 
 public abstract class ShapeDecorator implements Shape{
+    //有实现类之后，可以通过实现类去实现
     protected Shape decoratedShape;
     public ShapeDecorator(Shape decoratedShape) {
         this.decoratedShape = decoratedShape;

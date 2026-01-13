@@ -12,7 +12,7 @@ public class FileLogger extends AbstractLogger{
     public FileLogger(int level) {
         this.level=level;
     }
-
+    //实现write方法
     @Override
     protected  void write(String message) {
         System.out.println("File::Logger: " + message);

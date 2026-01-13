@@ -3,7 +3,7 @@ package org.example.warehousemanagersystem.study.空对象模式;
 /**
  * @Author: 沈琪
  * @CreateTime: 2025-12-30
- * @Description:
+ * @Description:抽象类方法
  * @Version: 1.0
  */
 

@@ -15,6 +15,7 @@ public class TerminalExpression implements Expression {
     }
     @Override
     public boolean interpret(String context) {
+        //判断是否包含
         if (context.contains(data)) {
             return true;
         }

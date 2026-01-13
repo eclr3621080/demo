@@ -11,6 +11,7 @@ import java.util.Date;
 
 
 public class ChatRoom {
+    //给每个user添加信息
     public static void showMessage(User user, String message) {
         System.out.println(new Date().toString()
                 + " [" + user.getName() +"] : " + message);

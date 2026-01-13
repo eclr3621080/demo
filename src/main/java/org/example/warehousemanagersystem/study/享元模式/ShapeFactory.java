@@ -11,9 +11,11 @@ import java.util.HashMap;
 
 
 public class ShapeFactory {
+    //类似于一个数据库
     private static final HashMap<String,Shape> circleMap = new HashMap<>();
 
     public static Shape getCircle(String color){
+        //往数据库中添加数据
         Circle circle = (Circle) circleMap.get(color);
         if (circle == null){
             circle = new Circle(color);

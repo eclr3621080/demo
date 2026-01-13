@@ -13,11 +13,14 @@ public class FlyweightPattern {
 
 
     public static void main(String[] args) {
+        //一次输出数据
         for (int i=0;i<colors.length;i++){
+            //每次输入一个值
             Circle circle= (Circle) ShapeFactory.getCircle(getRandomColor());
             circle.setX(getRandomX());
             circle.setY(getRandomY());
             circle.setRadius(100);
+            //画出来
             circle.draw();
         }
 

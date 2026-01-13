@@ -3,7 +3,7 @@ package org.example.warehousemanagersystem.study.外观模式;
 /**
  * @Author: 沈琪
  * @CreateTime: 2025-12-22
- * @Description: 创建一个外观类。
+ * @Description: 创建一个外观类
  * @Version: 1.0
  */
 
